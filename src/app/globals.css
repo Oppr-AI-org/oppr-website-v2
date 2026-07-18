@@ -1,0 +1,2765 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Oppr — Engineered Calm
+   The single visual direction. Design tokens live on .oppr-site; every
+   component below reads from them, so a retheme is a token change.
+   ========================================================================== */
+
+/* --- Reset ---------------------------------------------------------------- */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  /* Aligned to the documented palette (warm-white ground, ink text). */
+  background: #f2f2ed;
+  color: #15201e;
+  font-family: var(--archivo), Arial, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+p,
+h1,
+h2,
+h3,
+ol,
+ul {
+  margin: 0;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* --- Tokens & root -------------------------------------------------------- */
+
+.oppr-site {
+  --bg: #f2f2ed;
+  --surface: #fcfbf7;
+  --ink: #15201e;
+  --muted: #5f6965;
+  --line: #c8ceca;
+  --accent: #a65032;
+  --machine: #3e6874;
+  --human: #a65032;
+  --verified: #55745e;
+  --max: 1240px;
+
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.62;
+
+  /* The horizontal rule grid — the quiet baseline under everything. */
+  background-image: linear-gradient(rgba(21, 32, 30, 0.025) 1px, transparent 1px);
+  background-size: 100% 32px;
+}
+
+.oppr-site ::selection {
+  background: var(--accent);
+  color: var(--surface);
+}
+
+/* --- Typography ----------------------------------------------------------- */
+
+.oppr-site h1,
+.oppr-site h2,
+.oppr-site h3 {
+  font-weight: 650;
+  line-height: 1.05;
+  letter-spacing: -0.038em;
+}
+
+.oppr-site h1 {
+  font-size: clamp(48px, 6.2vw, 92px);
+}
+
+.oppr-site h2 {
+  font-size: clamp(38px, 4.4vw, 68px);
+}
+
+.oppr-site h3 {
+  font-size: 22px;
+}
+
+.oppr-site p {
+  max-width: 65ch;
+}
+
+/* Two-voice keywords — colour marks meaning in running copy, sparingly:
+   terracotta = the human, teal = the machine, green = verified. */
+.k-h {
+  color: var(--human);
+  font-weight: 600;
+}
+
+.k-m {
+  color: var(--machine);
+  font-weight: 600;
+}
+
+.k-v {
+  color: var(--verified);
+  font-weight: 600;
+}
+
+/* Colour without the weight — for keywords inside running copy that should
+   stay quiet (e.g. the hero lede). */
+.k-quiet {
+  font-weight: inherit;
+}
+
+.oppr-site small,
+.oppr-site time,
+.section-no,
+.eyebrow,
+.fact-strip,
+.product-head {
+  font-family: var(--mono), monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Section shell -------------------------------------------------------- */
+
+.section {
+  width: min(calc(100% - 48px), var(--max));
+  margin: auto;
+  padding: 132px 0;
+  border-top: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg) 94%, transparent);
+}
+
+/* --- Header --------------------------------------------------------------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+}
+
+.header-inner {
+  width: min(calc(100% - 48px), var(--max));
+  min-height: 76px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 28px;
+}
+
+.wordmark {
+  font-size: 29px;
+  font-weight: 800;
+  letter-spacing: -0.07em;
+}
+
+.wordmark span {
+  color: var(--accent);
+}
+
+.site-header nav {
+  display: flex;
+  gap: 30px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.site-header nav a {
+  transition: color 0.18s;
+}
+
+.site-header nav a:hover {
+  color: var(--accent);
+}
+
+/* --- Calls to action ------------------------------------------------------ */
+
+.top-cta,
+.primary-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  min-height: 48px;
+  padding: 0 19px;
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  background: var(--accent);
+  color: var(--surface);
+  font-size: 13px;
+  font-weight: 700;
+  transition: transform 0.18s, background 0.18s;
+}
+
+.top-cta {
+  justify-self: end;
+  min-height: 42px;
+}
+
+.top-cta:hover,
+.primary-cta:hover {
+  transform: translateY(-2px);
+}
+
+/* --- Hero ----------------------------------------------------------------- */
+
+.hero {
+  min-height: calc(100svh - 118px);
+  display: flex;
+  align-items: center;
+  padding: 86px 0 104px;
+}
+
+.hero-inner {
+  width: min(calc(100% - 48px), var(--max));
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 78px;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: clamp(50px, 5.9vw, 86px);
+  font-weight: 620;
+}
+
+.eyebrow,
+.section-no {
+  margin-bottom: 28px;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+/* The measured rule that precedes every section number. */
+.section-no:before {
+  content: "";
+  display: inline-block;
+  width: 34px;
+  margin-right: 10px;
+  border-top: 1px solid currentColor;
+  vertical-align: middle;
+}
+
+.hero-lede {
+  margin-top: 30px;
+  color: var(--muted);
+  font-size: 19px;
+  line-height: 1.68;
+}
+
+.hero-copy > .primary-cta {
+  margin-top: 38px;
+}
+
+.fact-strip {
+  margin-top: 36px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px 22px;
+  color: var(--muted);
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.fact-strip span + span:before {
+  content: "/";
+  margin-right: 22px;
+  color: var(--accent);
+}
+
+/* --- Product timeline ----------------------------------------------------- */
+
+.product-timeline {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--surface);
+  box-shadow: 0 18px 50px rgba(20, 28, 26, 0.09);
+}
+
+.product-head {
+  min-height: 40px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+}
+
+.live-dot {
+  color: var(--machine);
+}
+
+.live-dot:before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.tl-row {
+  min-height: 72px;
+  padding: 13px 15px 13px 72px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 68px 1fr;
+  gap: 13px;
+  border-bottom: 1px solid var(--line);
+}
+
+.tl-row:last-child {
+  border-bottom: 0;
+}
+
+.tl-row:before {
+  content: "";
+  position: absolute;
+  left: 43px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--line);
+}
+
+.tl-row > i {
+  position: absolute;
+  z-index: 2;
+  left: 39px;
+  top: 27px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 0 5px var(--surface);
+}
+
+.tl-row time {
+  padding-top: 4px;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.tl-row small {
+  display: block;
+  color: currentColor;
+  font-size: 8px;
+  letter-spacing: 0.08em;
+}
+
+.tl-row strong {
+  display: block;
+  margin-top: 4px;
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+.tl-row p {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.machine-row {
+  color: var(--machine);
+}
+
+.operator-row,
+.action-row {
+  color: var(--human);
+}
+
+.result-row {
+  color: #55745e;
+}
+
+/* --- Section grid --------------------------------------------------------- */
+
+.section-grid {
+  display: grid;
+  grid-template-columns: 0.92fr 1.08fr;
+  gap: 110px;
+}
+
+.section-heading h2 {
+  max-width: 13ch;
+}
+
+.section-sub {
+  margin-top: 26px;
+  color: var(--accent);
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+/* Quiet variant: plain ink prose, emphasis carried by weight alone. */
+.section-sub.sub-ink {
+  color: var(--ink);
+  font-weight: 400;
+}
+
+.section-copy {
+  padding-top: 42px;
+}
+
+.section-copy p {
+  color: var(--muted);
+  font-size: 17px;
+}
+
+.section-copy p + p {
+  margin-top: 22px;
+}
+
+.section-copy ul {
+  margin: 26px 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+.section-copy li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+}
+
+.section-copy li:before {
+  content: "+";
+  margin-right: 12px;
+  color: var(--accent);
+}
+
+.closing-copy {
+  margin: 58px 0 0 auto;
+  color: var(--ink);
+  font-size: 19px;
+  line-height: 1.55;
+}
+
+/* A short terracotta top-rule as the accent cue — echoes the section-no rule,
+   and keeps the 2px left-stripe reserved for the pull-quote alone. */
+.closing-copy::before {
+  content: "";
+  display: block;
+  width: 34px;
+  margin-bottom: 22px;
+  border-top: 2px solid var(--accent);
+}
+
+/* --- Loop visual ---------------------------------------------------------- */
+
+/* Three steps in a row (Observe · Adjust · Learn); "Improve" is the return arc
+   that loops back over the top into Observe, capped by a filled pill on the
+   line. Compact, ~two-thirds width. */
+.loop-visual {
+  margin: 44px auto 0;
+  width: 66%;
+  position: relative;
+}
+
+.loop-arc {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  margin-bottom: -1px;
+}
+
+.loop-arc-line,
+.loop-arc-head {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* the IMPROVE pill sits on the arc line: solid terracotta, white text, sized to
+   match the OBSERVE / ADJUST / LEARN labels */
+.loop-arc-pill {
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  padding: 9px 26px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--surface);
+  font-size: 17px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.loop-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  background: transparent;
+}
+
+.loop-row > div {
+  padding: 26px 26px 28px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 1px solid var(--line);
+}
+
+.loop-row > div:last-child {
+  border-right: 0;
+}
+
+/* the connector arrow — pronounced, sitting straight on the divider (no box) */
+.loop-row > div:not(:last-child):after {
+  content: "→";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(50%, -50%);
+  z-index: 2;
+  color: var(--accent);
+  font-size: 24px;
+  line-height: 1;
+}
+
+.loop-row strong {
+  display: block;
+  font-size: 17px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.loop-row small {
+  display: block;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* --- Platform ------------------------------------------------------------- */
+
+/* Compact two-column: the loop on the left, the heading block on the right
+   (eyebrow stacked above the heading). */
+.platform-grid {
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.platform-intro h2 {
+  margin-top: 16px;
+  max-width: 15ch;
+}
+
+.platform-lead {
+  margin-top: 24px;
+  max-width: 46ch;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.support-line {
+  margin-top: 22px;
+  max-width: 46ch;
+  color: var(--muted);
+  /* Prose, not data — override the mono group above (Mono-Is-Data rule). */
+  font-family: var(--archivo), Arial, sans-serif;
+  font-size: 14px;
+}
+
+/* --- Proof ---------------------------------------------------------------- */
+
+.proof-intro {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  column-gap: 110px;
+}
+
+.proof-intro .section-no,
+.proof-intro h2 {
+  grid-column: 1;
+}
+
+.proof-intro h2 {
+  grid-row: 2 / span 3;
+  max-width: 12ch;
+}
+
+.proof-intro > p:not(.section-no) {
+  grid-column: 2;
+  color: var(--muted);
+  font-size: 17px;
+}
+
+.proof-intro > p + p {
+  margin-top: 20px;
+}
+
+.proof-columns {
+  margin-top: 84px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.proof-columns > div {
+  padding: 34px;
+}
+
+.proof-columns > div + div {
+  border-left: 1px solid var(--line);
+}
+
+.proof-columns h3 {
+  font-size: 18px;
+}
+
+.proof-columns ol {
+  margin-top: 30px;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+.proof-columns li {
+  padding: 15px 0;
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 10px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.proof-columns li span {
+  color: var(--accent);
+  font: 600 9px var(--mono), monospace;
+}
+
+/* --- Review --------------------------------------------------------------- */
+
+.review {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 110px;
+  border-top-color: var(--ink);
+}
+
+.review h2 {
+  max-width: 12ch;
+}
+
+.review > div:last-child {
+  padding-top: 42px;
+}
+
+.review > div:last-child p {
+  color: var(--muted);
+  font-size: 18px;
+}
+
+.review > div:last-child p + p {
+  margin-top: 20px;
+}
+
+.review .primary-cta {
+  margin-top: 36px;
+}
+
+/* --- Footer --------------------------------------------------------------- */
+
+footer {
+  width: min(calc(100% - 48px), var(--max));
+  margin: auto;
+  padding: 50px 0 76px;
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+  border-top: 1px solid var(--line);
+}
+
+footer > div p {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+footer > div > span {
+  display: block;
+  margin-top: 9px;
+  color: var(--muted);
+  font: 500 9px var(--mono), monospace;
+}
+
+footer nav {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+  font-size: 12px;
+}
+
+/* --- Tablet --------------------------------------------------------------- */
+
+@media (max-width: 980px) {
+  .header-inner {
+    grid-template-columns: 1fr auto;
+  }
+
+  .site-header nav {
+    display: none;
+  }
+
+  .hero-inner {
+    gap: 38px;
+  }
+
+  .hero h1 {
+    font-size: clamp(46px, 7vw, 68px);
+  }
+
+  .section-grid,
+  .proof-intro,
+  .review {
+    gap: 58px;
+  }
+
+}
+
+/* --- Mobile --------------------------------------------------------------- */
+
+@media (max-width: 760px) {
+  .oppr-site {
+    font-size: 15px;
+  }
+
+  .site-header {
+    top: 0;
+  }
+
+  .header-inner {
+    width: calc(100% - 28px);
+    min-height: 66px;
+  }
+
+  .top-cta {
+    min-height: 38px;
+    padding-inline: 12px;
+    font-size: 10px;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 68px 0 86px;
+  }
+
+  .hero-inner {
+    width: calc(100% - 28px);
+    grid-template-columns: 1fr;
+    gap: 54px;
+  }
+
+  .hero h1 {
+    font-size: clamp(44px, 12.5vw, 62px);
+  }
+
+  .hero-lede {
+    font-size: 17px;
+  }
+
+  .fact-strip {
+    display: grid;
+    gap: 7px;
+  }
+
+  .fact-strip span + span:before {
+    content: "";
+    margin: 0;
+  }
+
+  .hero-visual {
+    min-height: auto;
+  }
+
+  .factory-frame {
+    height: 310px;
+  }
+
+  .hero-visual > .product-timeline {
+    width: 96%;
+    margin: -42px auto 0;
+    transform: none;
+  }
+
+  .tl-row {
+    padding-left: 55px;
+    grid-template-columns: 58px 1fr;
+  }
+
+  .tl-row:before {
+    left: 28px;
+  }
+
+  .tl-row > i {
+    left: 24px;
+  }
+
+  .section {
+    width: calc(100% - 28px);
+    padding: 90px 0;
+  }
+
+  .section-grid,
+  .proof-intro,
+  .review {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .section-copy {
+    padding-top: 0;
+  }
+
+  .proof-intro .section-no,
+  .proof-intro h2,
+  .proof-intro > p:not(.section-no) {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .loop-visual {
+    width: auto;
+  }
+
+  .loop-arc,
+  .loop-arc-pill {
+    display: none;
+  }
+
+  .loop-row {
+    grid-template-columns: 1fr;
+  }
+
+  .loop-row > div {
+    min-height: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .loop-row > div:last-child {
+    border-bottom: 0;
+  }
+
+  .loop-row > div:not(:last-child):after {
+    display: none;
+  }
+
+  .loop-row strong {
+    margin-top: 22px;
+  }
+
+  .platform-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .proof-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .proof-columns > div + div {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .review > div:last-child {
+    padding-top: 0;
+  }
+
+  footer {
+    width: calc(100% - 28px);
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  footer nav {
+    flex-wrap: wrap;
+  }
+
+  .closing-copy {
+    font-size: 17px;
+  }
+}
+
+/* Promoted fact strip: larger, so the hero facts stay readable. */
+.fact-strip.lg {
+  font-size: 13px;
+}
+
+/* ==========================================================================
+   Scoped theme (.theme-v4)
+   Soft per-section colour washes that fade down the page, alternating section
+   layouts, a stat strip and a pull-quote.
+   ========================================================================== */
+
+/* Keep the hero eyebrow on one line at normal widths; wrap only when narrow. */
+.hero .eyebrow {
+  white-space: nowrap;
+}
+
+.theme-v4 {
+  background-color: var(--bg);
+  /* Rule grid + a very subtle full-page hue wash that shifts warm → cool → warm
+     down the page. Because v4 sections are transparent, the wash shows through
+     and fades smoothly across section borders. */
+  background-image: linear-gradient(rgba(21, 32, 30, 0.025) 1px, transparent 1px),
+    linear-gradient(
+      180deg,
+      rgba(166, 80, 50, 0.05) 0%,
+      rgba(62, 104, 116, 0.05) 28%,
+      rgba(85, 116, 94, 0.045) 52%,
+      rgba(166, 80, 50, 0.05) 76%,
+      rgba(62, 104, 116, 0.045) 100%
+    );
+  background-size: 100% 32px, 100% 100%;
+}
+
+/* Transparent sections let the page wash through; a localized radial "light"
+   glow gives each section its own tint. Odd = warm (accent), even = cool
+   (machine). z-index keeps the glow behind the text. */
+.theme-v4 .section {
+  position: relative;
+  z-index: 0;
+  background: transparent;
+}
+
+.theme-v4 .section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  /* Kept low so terracotta 11px labels stay ≥4.5:1 over the wash. */
+  background: radial-gradient(
+    62% 55% at 85% 0%,
+    color-mix(in srgb, var(--accent) 5%, transparent),
+    transparent 70%
+  );
+}
+
+.theme-v4 .section:nth-of-type(even)::before {
+  background: radial-gradient(
+    62% 55% at 15% 0%,
+    color-mix(in srgb, var(--machine) 5%, transparent),
+    transparent 70%
+  );
+}
+
+/* Alternating layout — flip heading and copy so the eye doesn't settle into
+   one rhythm. Applied per-section in the markup via .flipped. */
+.section-grid.flipped {
+  grid-template-columns: 1.08fr 0.92fr;
+}
+
+.section-grid.flipped .section-heading {
+  order: 2;
+}
+
+.section-grid.flipped .section-copy {
+  order: 1;
+}
+
+/* Emphasised body line (e.g. "evidence becomes action..."). */
+.section-copy .emphasis {
+  color: var(--ink);
+  font-weight: 650;
+}
+
+/* Illustrative outcomes under the floor-proof story. Deliberately NOT a
+   big-number KPI band — the figures are directional, honestly framed by the
+   caption above, until a verified case study exists. */
+.stat-caption {
+  margin-top: 80px;
+  color: var(--muted);
+  font-family: var(--mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.stat-strip {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--surface);
+}
+
+.stat-strip > div {
+  padding: 30px;
+  border-right: 1px solid var(--line);
+}
+
+.stat-strip > div:last-child {
+  border-right: 0;
+}
+
+.stat-strip strong {
+  display: block;
+  font-size: 21px;
+  font-weight: 650;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+}
+
+.stat-strip span {
+  display: block;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+/* Operator pull-quote inside the case story. */
+.pull-quote {
+  margin-top: 44px;
+  padding-left: 24px;
+  border-left: 2px solid var(--accent);
+  color: var(--ink);
+  font-size: 24px;
+  line-height: 1.4;
+  font-style: italic;
+}
+
+/* Marks wrap the quote itself, never the citation. */
+.pull-quote p {
+  margin: 0;
+  max-width: none;
+}
+
+.pull-quote p:first-of-type::before {
+  content: "“";
+  color: var(--accent);
+}
+
+.pull-quote p:last-of-type::after {
+  content: "”";
+  color: var(--accent);
+}
+
+.pull-quote cite {
+  display: block;
+  margin-top: 14px;
+  color: var(--muted);
+  font-family: var(--mono), monospace;
+  font-size: 12px;
+  font-style: normal;
+}
+
+@media (max-width: 760px) {
+  .hero .eyebrow {
+    white-space: normal;
+  }
+
+  /* On mobile everything is single-column, so undo the flip ordering. */
+  .section-grid.flipped .section-heading,
+  .section-grid.flipped .section-copy {
+    order: 0;
+  }
+
+  .stat-strip {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .stat-strip > div:nth-child(2) {
+    border-right: 0;
+  }
+
+  .stat-strip > div:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .pull-quote {
+    font-size: 20px;
+  }
+}
+
+/* --- Booking page (/book) ------------------------------------------------- */
+
+.book-header-inner {
+  grid-template-columns: 1fr auto;
+}
+
+.book-back {
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono), monospace;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  transition: color 0.18s;
+}
+
+.book-back:hover {
+  color: var(--accent);
+}
+
+.book-shell {
+  width: min(calc(100% - 48px), var(--max));
+  margin: auto;
+  padding: 72px 0 120px;
+  display: grid;
+  grid-template-columns: 1.02fr 0.98fr;
+  gap: 78px;
+  align-items: start;
+}
+
+.book-intro h1 {
+  font-size: clamp(34px, 4.2vw, 52px);
+  font-weight: 620;
+}
+
+.book-lede {
+  margin-top: 24px;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.62;
+}
+
+.book-facts {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  border-top: 1px solid var(--line);
+  padding-top: 22px;
+}
+
+.book-facts span {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.book-facts span::before {
+  content: "+";
+  margin-right: 12px;
+  color: var(--accent);
+}
+
+.book-timeline {
+  margin-top: 40px;
+}
+
+.book-timeline .product-timeline {
+  box-shadow: none;
+}
+
+/* Form panel */
+.book-panel {
+  padding: 34px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--surface);
+}
+
+.book-form {
+  display: grid;
+  gap: 20px;
+}
+
+.book-field {
+  display: grid;
+  gap: 8px;
+}
+
+.book-field label {
+  font-family: var(--mono), monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.book-optional {
+  margin-left: 8px;
+  color: var(--muted);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+.book-field input,
+.book-field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--archivo), Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  transition: border-color 0.18s, box-shadow 0.18s;
+}
+
+.book-field textarea {
+  resize: vertical;
+  min-height: 108px;
+}
+
+.book-field input::placeholder,
+.book-field textarea::placeholder {
+  color: color-mix(in srgb, var(--muted) 78%, transparent);
+}
+
+.book-field input:focus-visible,
+.book-field textarea:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+.book-submit {
+  width: 100%;
+  margin-top: 4px;
+}
+
+.book-submit:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.book-reassure {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.book-error {
+  margin: 0;
+  padding: 11px 13px;
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--line));
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--accent) 7%, transparent);
+  color: #8a2f1c;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+/* Success state */
+.book-success {
+  padding: 40px 34px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--surface);
+}
+
+.book-success-mark {
+  margin: 0 0 16px;
+  color: #55745e;
+  font-family: var(--mono), monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+}
+
+.book-success h2 {
+  font-size: clamp(28px, 3vw, 38px);
+}
+
+.book-success p {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .book-shell {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+
+  .book-timeline {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .book-shell {
+    width: calc(100% - 28px);
+    padding: 48px 0 90px;
+  }
+
+  .book-panel {
+    padding: 24px;
+  }
+}
+
+/* --- Footer (extended) ---------------------------------------------------- */
+
+.footer-cols {
+  display: flex;
+  gap: 72px;
+}
+
+.footer-cols nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.footer-label {
+  margin: 0 0 4px;
+  color: var(--muted);
+  font-family: var(--mono), monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.footer-cols nav a {
+  color: var(--muted);
+  transition: color 0.18s;
+}
+
+.footer-cols nav a:hover {
+  color: var(--accent);
+}
+
+.footer-social {
+  margin-top: 18px;
+  display: flex;
+  gap: 10px;
+}
+
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  color: var(--muted);
+  transition: color 0.18s, border-color 0.18s, transform 0.18s;
+}
+
+.footer-social a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* --- Contact (/contact) --------------------------------------------------- */
+
+.contact-details {
+  margin: 30px 0 0;
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+
+.contact-details > div {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.contact-details dt {
+  color: var(--muted);
+  font-family: var(--mono), monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding-top: 3px;
+}
+
+.contact-details dd {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.contact-details a {
+  color: var(--ink);
+  transition: color 0.18s;
+}
+
+.contact-details a:hover {
+  color: var(--accent);
+}
+
+.contact-follow {
+  display: flex;
+  gap: 22px;
+}
+
+.contact-follow a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.contact-book {
+  margin-top: 30px;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.contact-book a {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.contact-book a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ==========================================================================
+   About (/about)
+   ========================================================================== */
+
+.about-hero.section {
+  border-top: 0;
+  padding: 104px 0 96px;
+}
+
+.about-hero h1 {
+  max-width: 16ch;
+  text-wrap: balance;
+}
+
+.about-lede {
+  margin-top: 32px;
+  max-width: 62ch;
+  color: var(--muted);
+  font-size: 20px;
+  line-height: 1.62;
+}
+
+.about-block-head {
+  margin-bottom: 46px;
+}
+
+.about-block-head h2 {
+  max-width: 20ch;
+  text-wrap: balance;
+}
+
+.about-quote {
+  margin-top: 64px;
+  max-width: 46ch;
+}
+
+/* Three pillars — instrument gauges. Each move carries its two-voice colour:
+   people = terracotta (human), assets = teal (machine), performance = green.
+   The icon sits on a coloured baseline rule like a gauge marker. */
+.about-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--line);
+}
+
+.pillar {
+  padding: 30px 30px 34px;
+  border-right: 1px solid var(--line);
+  --vc: var(--accent);
+}
+
+.pillar:last-child {
+  border-right: 0;
+}
+
+.pillar[data-voice="human"] {
+  --vc: var(--accent);
+}
+
+.pillar[data-voice="machine"] {
+  --vc: var(--machine);
+}
+
+.pillar[data-voice="verified"] {
+  --vc: #55745e;
+}
+
+.pillar-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--vc);
+  color: var(--vc);
+}
+
+.pillar-icon {
+  display: block;
+  width: 33px;
+  height: 33px;
+  transition: transform 0.2s ease;
+}
+
+.pillar:hover .pillar-icon {
+  transform: translateY(-3px);
+}
+
+.pillar-idx {
+  font-family: var(--mono), monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.pillar h3 {
+  margin-top: 26px;
+  font-size: 23px;
+  letter-spacing: -0.02em;
+}
+
+.pillar p {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* Journey — a milestone timeline. The top hairline is the rail; each step
+   hangs a node dot from it. A real ordered sequence, so the years lead. */
+.about-journey {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 0;
+  list-style: none;
+}
+
+.journey-step {
+  position: relative;
+  padding: 32px 26px 8px 0;
+  border-top: 1px solid var(--line);
+}
+
+.journey-step::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px var(--bg);
+}
+
+.journey-year {
+  font-family: var(--mono), monospace;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+}
+
+.journey-step strong {
+  display: block;
+  margin-top: 18px;
+  font-size: 17px;
+  font-weight: 650;
+}
+
+.journey-step p {
+  margin-top: 12px;
+  max-width: 34ch;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+/* Company specs — mono label over value, the Mono-Is-Data rule at work. */
+.about-specs {
+  margin: 30px 0 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.about-specs > div {
+  padding: 20px 22px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.about-specs dt {
+  color: var(--muted);
+  font-family: var(--mono), monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.about-specs dd {
+  margin: 8px 0 0;
+  font-size: 19px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+/* Team roster — portrait grid. Photos are lightly desaturated so a set of
+   mismatched headshots reads as one calm system, full colour on hover. */
+.about-team {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px 26px;
+  padding: 0;
+  list-style: none;
+}
+
+.team-photo {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--surface);
+}
+
+.team-photo img {
+  object-fit: cover;
+  filter: grayscale(0.55) contrast(1.03);
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+.about-team li:hover .team-photo img {
+  filter: grayscale(0);
+  transform: scale(1.03);
+}
+
+.about-team strong {
+  display: block;
+  margin-top: 16px;
+  font-size: 16px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.about-team span {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted);
+  font-family: var(--mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+/* Beliefs — folded into the company section. A ledger grid: each rule leads
+   with a ghosted logbook index that warms to terracotta on hover. */
+.about-beliefs {
+  margin-top: 96px;
+}
+
+.about-beliefs h3 {
+  max-width: 20ch;
+  font-size: 24px;
+  letter-spacing: -0.02em;
+}
+
+.about-values {
+  margin-top: 34px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.value {
+  padding: 26px 24px 30px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  transition: background 0.2s ease;
+}
+
+.value:hover {
+  background: color-mix(in srgb, var(--surface) 75%, transparent);
+}
+
+.value-no {
+  font-family: var(--mono), monospace;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: color-mix(in srgb, var(--ink) 22%, transparent);
+  transition: color 0.2s ease;
+}
+
+.value:hover .value-no {
+  color: var(--accent);
+}
+
+.value strong {
+  display: block;
+  margin-top: 14px;
+  font-size: 16px;
+  font-weight: 650;
+}
+
+.value p {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+
+/* ==========================================================================
+   Legal (/privacy, /terms)
+   ========================================================================== */
+
+.legal-shell {
+  width: min(calc(100% - 48px), 760px);
+  margin: auto;
+  padding: 84px 0 120px;
+}
+
+.legal-head {
+  padding-bottom: 34px;
+  margin-bottom: 44px;
+  border-bottom: 1px solid var(--line);
+}
+
+.legal-head h1 {
+  margin-top: 6px;
+  font-size: clamp(38px, 5vw, 58px);
+}
+
+.legal-updated {
+  margin-top: 20px;
+  color: var(--muted);
+  font-family: var(--mono), monospace;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+}
+
+.legal-intro {
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+.legal-body section {
+  margin-top: 46px;
+}
+
+.legal-body h2 {
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.legal-body p {
+  color: #414a46;
+  font-size: 16px;
+  line-height: 1.72;
+}
+
+.legal-body p + p {
+  margin-top: 18px;
+}
+
+.legal-body ul {
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+.legal-body li {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+  color: #414a46;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.legal-body li strong {
+  color: var(--ink);
+  font-weight: 650;
+}
+
+.legal-body a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.legal-body a:hover {
+  text-decoration-thickness: 2px;
+}
+
+/* --- About & legal: tablet ------------------------------------------------ */
+
+@media (max-width: 980px) {
+  .about-journey {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .about-team {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* --- About & legal: mobile ------------------------------------------------ */
+
+@media (max-width: 760px) {
+  .footer-cols {
+    gap: 44px;
+  }
+
+  .about-hero.section {
+    padding: 72px 0 72px;
+  }
+
+  .about-lede {
+    font-size: 18px;
+  }
+
+  .about-pillars,
+  .about-journey,
+  .about-specs {
+    grid-template-columns: 1fr;
+  }
+
+  .about-team {
+    grid-template-columns: 1fr 1fr;
+    gap: 22px 16px;
+  }
+
+  .contact-shell .contact-details > div {
+    grid-template-columns: 80px 1fr;
+  }
+
+  .pillar {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .pillar:last-child {
+    border-bottom: 0;
+  }
+
+  .about-specs > div:nth-child(odd) {
+    border-right: 1px solid var(--line);
+  }
+
+  .about-beliefs {
+    margin-top: 64px;
+  }
+}
+
+/* ==========================================================================
+   Illustrations (home) — hand-drafted SVG in the house line-art style; the
+   hero is a full-bleed vector scene behind the copy, the section figures are
+   CSS-animated sequences (see animations.tsx). All float on the ruled page.
+   ========================================================================== */
+
+/* Hero: art takes the full width; a mask fades it out under the copy. */
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-art {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  aspect-ratio: 1600 / 640;
+  max-height: 100%;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 6%,
+    rgba(0, 0, 0, 0.14) 34%,
+    rgba(0, 0, 0, 0.75) 60%,
+    #000 74%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 6%,
+    rgba(0, 0, 0, 0.14) 34%,
+    rgba(0, 0, 0, 0.75) 60%,
+    #000 74%
+  );
+}
+
+.hero-art svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* --- Photoreal hero: full-width photo band + coded overlay ----------------- */
+/* The photo + overlay share one SVG (1584×672). The band spans the full width
+   at the image aspect (no crop), and the copy is overlaid on the muted left. */
+.hero.hero-photo {
+  display: block;
+  position: relative;
+  padding: 0;
+  /* The photo is 1584×672 and covers the band (`slice`, top-anchored). With a
+     flat 760px cap the band gets shorter-than-the-image past ~1792px wide, so
+     `slice` zoom-crops the bottom — cutting the HMI/skid off. Instead, once the
+     width passes that point let the band grow with width (tracking the image's
+     own 672/1584 ratio) so the full frame stays in view; capped at 1000px so
+     ultrawide monitors don't get an oversized hero, and still bounded by the
+     viewport height so it never exceeds the screen. Below ~1792px the clamp
+     floors at 760px — identical to the previous behaviour. */
+  min-height: min(
+    calc(100svh - 72px),
+    clamp(760px, calc(100vw * 672 / 1584), 1000px)
+  );
+}
+
+.hero-photo .hero-art {
+  position: absolute;
+  inset: 0;
+  width: auto;
+  aspect-ratio: auto;
+  max-height: none;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.hero-photo .hero-art .hero-photo-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* timeline badge — pinned to the top-right corner, independent of photo crop */
+.hero-tl-badge {
+  position: absolute;
+  top: 132px;
+  right: 20px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  /* pill: green stroke matching the text, light frosted translucent fill */
+  padding: 7px 15px 7px 14px;
+  border: 1.5px solid #2f7a4d;
+  border-radius: 999px;
+  background: rgba(244, 246, 241, 0.9);
+  backdrop-filter: blur(5px) saturate(1.05);
+  -webkit-backdrop-filter: blur(5px) saturate(1.05);
+  box-shadow: 0 2px 14px rgba(6, 10, 6, 0.28);
+  font-family: var(--mono), monospace;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #2f7a4d;
+  text-shadow: 0 1px 10px rgba(6, 8, 6, 0.6);
+}
+
+.hero-tl-badge .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2f7a4d;
+  box-shadow: 0 0 8px rgba(47, 122, 77, 0.6);
+}
+
+.hero-tl-badge .check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  border: 1.6px solid #2f7a4d;
+  border-radius: 50%;
+  font-size: 14px;
+  color: #2f7a4d;
+}
+
+.hero-photo .hero-inner {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  min-height: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 186px 0 40px;
+  width: min(calc(100% - 48px), var(--max));
+  margin: 0 auto;
+}
+
+/* eyebrow reads over the photo, clear of the timeline chips above it */
+.hero-photo .eyebrow {
+  color: #e5936f;
+}
+
+/* the two-voice words need to lift off the dark photo */
+.hero-photo .hero-lede .k-quiet {
+  opacity: 1;
+}
+.hero-photo .hero-lede .k-h {
+  color: #ec9169;
+}
+.hero-photo .hero-lede .k-m {
+  color: #86c3d6;
+  font-style: italic;
+}
+.hero-photo .hero-lede strong {
+  color: #fff;
+}
+.hero-photo .hero-lede .k-hero-plain {
+  color: #fff;
+}
+.hero-photo .fact-strip span + span:before {
+  color: #e5936f;
+}
+
+.hero-photo .hero-copy {
+  max-width: 560px;
+}
+
+/* copy reads white over the photo; headline a touch smaller than the line-art hero */
+.hero-photo h1 {
+  color: #f4f2ec;
+  font-size: clamp(40px, 4.7vw, 66px);
+  text-shadow: 0 1px 24px rgba(8, 8, 6, 0.5);
+}
+
+.hero-photo .hero-lede {
+  margin-top: 22px;
+  font-size: 17px;
+  color: rgba(244, 242, 236, 0.85);
+  text-shadow: 0 1px 16px rgba(8, 8, 6, 0.55);
+}
+
+.hero-photo .hero-lede strong {
+  color: #fff;
+}
+
+.hero-photo .fact-strip {
+  color: rgba(244, 242, 236, 0.7);
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  display: block;
+}
+
+.hero-copy {
+  max-width: 660px;
+}
+
+.ill {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Rendered film clips (public/films/*.mp4) sit in the slots the hand-built SVG
+   sequences used to occupy — same block-level, full-width, auto-height sizing. */
+.film {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+}
+
+.ill text,
+.hero-art text {
+  font-variant-numeric: tabular-nums;
+}
+
+.connect-figure,
+.execute-figure {
+  width: 100%;
+  margin: 80px auto 0;
+}
+
+.connect-figure {
+  max-width: 940px;
+}
+
+.execute-figure {
+  max-width: 940px;
+}
+
+/* Capture — three animated demonstrations, side by side. */
+.capture-anims {
+  margin-top: 88px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--line);
+}
+
+.capture-anims figure {
+  margin: 0;
+  padding: 40px 30px 8px;
+}
+
+.capture-anims figure + figure {
+  border-left: 1px solid var(--line);
+}
+
+.capture-anims figcaption {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.capture-anims figcaption strong {
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+}
+
+.capture-anims figcaption small {
+  color: var(--muted);
+  font-size: 12.5px;
+}
+
+/* Platform — the operational loop as a compact circle: connect at the top,
+   capture bottom-left, execute bottom-right, each screen looping a demo. */
+.platform-circle {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 520px;
+  aspect-ratio: 1 / 0.9;
+}
+
+.pc-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 72%;
+  height: 72%;
+  transform: translate(-50%, -50%);
+}
+
+/* the arrow + fading trail rotate around the ring centre, continuously; the
+   screen cards paint on top, so it slips behind each system as it passes */
+.pc-orbit {
+  transform-box: view-box;
+  transform-origin: 250px 250px;
+  animation: pc-orbit 9s linear infinite;
+}
+
+@keyframes pc-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.pc-item {
+  position: absolute;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+}
+
+.pc-item h3 {
+  margin-top: 8px;
+  font-size: 16px;
+}
+
+.pc-item p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+  white-space: pre-line; /* honour the \n in the Connect caption (two rows) */
+}
+
+/* connect at the top (wider, landscape), capture bottom-left, execute bottom-right.
+   Positioned with calc, not transform — the scroll-reveal animates transform and
+   must not fight the layout. */
+.pc-connect {
+  top: 0;
+  left: calc(50% - 116px);
+  width: 232px;
+}
+
+.pc-capture {
+  bottom: 0;
+  left: 0;
+}
+
+.pc-execute {
+  bottom: 0;
+  right: 0;
+}
+
+.screen-body {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.pc-capture .screen-body,
+.pc-execute .screen-body {
+  width: 118px;
+  border-radius: 16px;
+}
+
+.pc-connect .screen-body {
+  width: 232px;
+  border-radius: 12px;
+}
+
+.screen-body svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* --- Platform screen animations (loop demos) ------------------------------ */
+.pc-screen [class^="cap-bar"],
+.pc-screen .cap-rec,
+.pc-screen .cap-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* Capture: record-button press + ripple, then the waveform modulates, repeat */
+.pc-cap {
+  --cap: 4.2s;
+}
+.pc-cap .cap-bar { animation: cap-flat var(--cap) ease-in-out infinite; }
+.pc-cap .cap-bar-0 { animation-name: cap-w0; }
+.pc-cap .cap-bar-1 { animation-name: cap-w1; }
+.pc-cap .cap-bar-2 { animation-name: cap-w2; }
+.pc-cap .cap-bar-3 { animation-name: cap-w3; }
+.pc-cap .cap-rec { animation: cap-press var(--cap) ease-out infinite; }
+.pc-cap .cap-ring { animation: cap-ripple var(--cap) ease-out infinite; }
+
+@keyframes cap-flat { 0%, 100% { transform: scaleY(0.16); } }
+@keyframes cap-w0 {
+  0%, 8% { transform: scaleY(0.16); }
+  16% { transform: scaleY(1); } 28% { transform: scaleY(0.45); }
+  40% { transform: scaleY(0.9); } 52% { transform: scaleY(0.5); }
+  62% { transform: scaleY(0.8); } 70%, 100% { transform: scaleY(0.16); }
+}
+@keyframes cap-w1 {
+  0%, 8% { transform: scaleY(0.16); }
+  18% { transform: scaleY(0.55); } 30% { transform: scaleY(1); }
+  42% { transform: scaleY(0.4); } 54% { transform: scaleY(0.85); }
+  64% { transform: scaleY(0.5); } 70%, 100% { transform: scaleY(0.16); }
+}
+@keyframes cap-w2 {
+  0%, 8% { transform: scaleY(0.16); }
+  20% { transform: scaleY(0.85); } 32% { transform: scaleY(0.4); }
+  44% { transform: scaleY(1); } 56% { transform: scaleY(0.55); }
+  66% { transform: scaleY(0.75); } 72%, 100% { transform: scaleY(0.16); }
+}
+@keyframes cap-w3 {
+  0%, 8% { transform: scaleY(0.16); }
+  22% { transform: scaleY(0.5); } 34% { transform: scaleY(0.8); }
+  46% { transform: scaleY(0.45); } 58% { transform: scaleY(1); }
+  68% { transform: scaleY(0.5); } 74%, 100% { transform: scaleY(0.16); }
+}
+@keyframes cap-press {
+  0% { transform: scale(1); }
+  4% { transform: scale(0.86); }
+  9% { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+@keyframes cap-ripple {
+  0% { opacity: 0.55; transform: scale(1); }
+  10% { opacity: 0; transform: scale(1.7); }
+  100% { opacity: 0; transform: scale(1.7); }
+}
+
+/* Connect: a highlight walks the timeline blue → red → blue → red, on a loop */
+.pc-conn {
+  --conn: 5.4s;
+}
+.pc-conn .conn-hl {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: conn-walk var(--conn) ease-in-out infinite both;
+  animation-delay: calc(var(--conn) / 6 * var(--rank));
+}
+@keyframes conn-walk {
+  0% { opacity: 0; transform: scale(0.6); }
+  4% { opacity: 1; transform: scale(1); }
+  13% { opacity: 1; transform: scale(1); }
+  20% { opacity: 0; transform: scale(1.25); }
+  100% { opacity: 0; transform: scale(1.25); }
+}
+
+/* Execute: fill the checklist top→bottom (each turns green), then reset */
+.pc-exec {
+  --exec: 5.2s;
+}
+.pc-exec .exec-row { animation: exec-off var(--exec) ease-in-out infinite; }
+.pc-exec .exec-row-0 { animation-name: exec-r0; }
+.pc-exec .exec-row-1 { animation-name: exec-r1; }
+.pc-exec .exec-row-2 { animation-name: exec-r2; }
+.pc-exec .exec-row-3 { animation-name: exec-r3; }
+.pc-exec .exec-done { animation: exec-done var(--exec) ease-in-out infinite; }
+
+@keyframes exec-off { 0%, 100% { opacity: 0; } }
+@keyframes exec-r0 { 0%, 8% { opacity: 0; } 14%, 88% { opacity: 1; } 94%, 100% { opacity: 0; } }
+@keyframes exec-r1 { 0%, 24% { opacity: 0; } 30%, 88% { opacity: 1; } 94%, 100% { opacity: 0; } }
+@keyframes exec-r2 { 0%, 40% { opacity: 0; } 46%, 88% { opacity: 1; } 94%, 100% { opacity: 0; } }
+@keyframes exec-r3 { 0%, 56% { opacity: 0; } 62%, 88% { opacity: 1; } 94%, 100% { opacity: 0; } }
+@keyframes exec-done { 0%, 66% { opacity: 0; } 72%, 88% { opacity: 1; } 94%, 100% { opacity: 0; } }
+
+/* Outcome icons in the stat strip. */
+.stat-strip svg {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 14px;
+  display: block;
+}
+
+@media (max-width: 980px) {
+  .platform-circle {
+    aspect-ratio: auto;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .pc-ring {
+    display: none;
+  }
+
+  .pc-item,
+  .pc-connect {
+    position: static;
+    left: auto;
+    width: 232px;
+  }
+}
+
+@media (max-width: 900px) {
+  .capture-anims {
+    grid-template-columns: 1fr;
+  }
+
+  .capture-anims figure {
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 30px 0 12px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .capture-anims figure + figure {
+    border-left: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero-art {
+    opacity: 0.22;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .connect-figure,
+  .execute-figure {
+    margin-top: 54px;
+  }
+}
+
+/* --- Animated sequences ----------------------------------------------------
+   Shared step windows: .w1 … .w8 fade in one after another over one cycle and
+   the whole scene resets together. Base markup is the completed scene, so
+   with prefers-reduced-motion (animations globally disabled) every step is
+   simply visible; transient effects carry opacity="0" and stay hidden. */
+
+.anim {
+  --cycle: 10s;
+}
+
+.anim-slow {
+  --cycle: 14s;
+}
+
+.anim .w1 { animation: awin1 var(--cycle) linear infinite; }
+.anim .w2 { animation: awin2 var(--cycle) linear infinite; }
+.anim .w3 { animation: awin3 var(--cycle) linear infinite; }
+.anim .w4 { animation: awin4 var(--cycle) linear infinite; }
+.anim .w5 { animation: awin5 var(--cycle) linear infinite; }
+.anim .w6 { animation: awin6 var(--cycle) linear infinite; }
+.anim .w7 { animation: awin7 var(--cycle) linear infinite; }
+.anim .w8 { animation: awin8 var(--cycle) linear infinite; }
+
+.anim .cam-flash { animation: acamflash var(--cycle) linear infinite; }
+.anim .cflash { animation: acflash var(--cycle) linear infinite; }
+
+.anim .cz {
+  animation: aczoom var(--cycle) ease-in-out infinite;
+}
+
+.anim .pkt1 { animation: apkt1 var(--cycle) linear infinite; }
+.anim .pkt2 { animation: apkt2 var(--cycle) linear infinite; }
+
+.anim .ping {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.anim .ping1 { animation: aping1 var(--cycle) linear infinite; }
+.anim .ping2 { animation: aping2 var(--cycle) linear infinite; }
+
+@keyframes awin1 { 0%, 3% { opacity: 0; } 7%, 95% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes awin2 { 0%, 13% { opacity: 0; } 17%, 95% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes awin3 { 0%, 23% { opacity: 0; } 27%, 95% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes awin4 { 0%, 33% { opacity: 0; } 37%, 95% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes awin5 { 0%, 43% { opacity: 0; } 47%, 95% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes awin6 { 0%, 53% { opacity: 0; } 57%, 95% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes awin7 { 0%, 63% { opacity: 0; } 67%, 95% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes awin8 { 0%, 73% { opacity: 0; } 77%, 95% { opacity: 1; } 100% { opacity: 0; } }
+
+@keyframes acamflash {
+  0%, 15% { opacity: 0; }
+  17% { opacity: 0.9; }
+  21%, 100% { opacity: 0; }
+}
+
+/* correlation highlight rings: appear, blink, hold */
+@keyframes acflash {
+  0%, 56% { opacity: 0; }
+  58% { opacity: 1; }
+  60% { opacity: 0.15; }
+  62% { opacity: 1; }
+  64% { opacity: 0.15; }
+  66%, 94% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* connect: settle in close, then zoom out as history fills the line */
+@keyframes aczoom {
+  0%, 26% { transform: scale(1.1); }
+  38%, 96% { transform: scale(0.9); }
+  100% { transform: scale(1.1); }
+}
+
+/* packets travelling along the transfer arrows */
+@keyframes apkt1 {
+  0%, 13% { opacity: 0; transform: translateX(0); }
+  15% { opacity: 1; }
+  23% { opacity: 1; transform: translateX(126px); }
+  25%, 100% { opacity: 0; transform: translateX(126px); }
+}
+
+@keyframes apkt2 {
+  0%, 44% { opacity: 0; transform: translateX(0); }
+  46% { opacity: 1; }
+  54% { opacity: 1; transform: translateX(126px); }
+  56%, 100% { opacity: 0; transform: translateX(126px); }
+}
+
+/* notification pings on the operator's phone */
+@keyframes aping1 {
+  0%, 55% { opacity: 0; transform: scale(0.4); }
+  59% { opacity: 0.8; transform: scale(0.9); }
+  66% { opacity: 0; transform: scale(1.6); }
+  100% { opacity: 0; }
+}
+
+@keyframes aping2 {
+  0%, 60% { opacity: 0; transform: scale(0.4); }
+  64% { opacity: 0.7; transform: scale(0.9); }
+  71% { opacity: 0; transform: scale(1.6); }
+  100% { opacity: 0; }
+}
+
+/* --- Motion: subtle scroll reveals ---------------------------------------- */
+/* Enhances an already-visible default. Applies only where scroll-driven
+   animations are supported AND motion is allowed; otherwise content is
+   simply visible (never gated behind the animation). */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .pillar,
+    .journey-step,
+    .value,
+    .about-team li,
+    .about-quote,
+    .capture-anims figure,
+    .connect-figure,
+    .execute-figure,
+    .pc-item {
+      animation: about-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 42%;
+    }
+
+    @keyframes about-rise {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  }
+}
+
+/* --- FAQ ------------------------------------------------------------------ */
+
+.faq-shell {
+  width: min(calc(100% - 48px), 900px);
+  margin: auto;
+  padding: 84px 0 120px;
+}
+
+.faq-hero {
+  padding-bottom: 40px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.faq-hero h1 {
+  margin-top: 6px;
+  font-size: clamp(44px, 6vw, 74px);
+}
+
+.faq-lede {
+  margin-top: 26px;
+  max-width: 60ch;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.68;
+}
+
+.faq-group {
+  margin-top: 72px;
+}
+
+.faq-group-head {
+  margin-bottom: 8px;
+}
+
+.faq-group-head h2 {
+  font-size: clamp(26px, 3vw, 34px);
+}
+
+/* The ledger: items stacked on a shared hairline rail, flat by system rule. */
+.faq-list {
+  margin-top: 26px;
+  border-top: 1px solid var(--line);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--line);
+}
+
+.faq-item summary {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 28px;
+  padding: 24px 4px;
+  cursor: pointer;
+  list-style: none;
+  outline: none;
+}
+
+/* Strip the native disclosure triangle across engines. */
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-q {
+  color: var(--ink);
+  font-size: clamp(17px, 1.9vw, 19px);
+  font-weight: 650;
+  line-height: 1.32;
+  letter-spacing: -0.01em;
+}
+
+.faq-item summary:hover .faq-q {
+  color: var(--accent);
+}
+
+.faq-item summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* The mark: a terracotta plus that becomes a minus on open — the one loud
+   colour, kept small. */
+.faq-mark {
+  position: relative;
+  flex-shrink: 0;
+  width: 15px;
+  height: 15px;
+  margin-top: 5px;
+  color: var(--accent);
+}
+
+.faq-mark::before,
+.faq-mark::after {
+  content: "";
+  position: absolute;
+  background: currentColor;
+}
+
+.faq-mark::before {
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  transform: translateY(-50%);
+}
+
+.faq-mark::after {
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  transform: translateX(-50%);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.faq-item[open] .faq-mark::after {
+  transform: translateX(-50%) rotate(90deg);
+  opacity: 0;
+}
+
+.faq-a {
+  padding: 0 44px 26px 4px;
+}
+
+.faq-a p {
+  max-width: 70ch;
+  color: #414a46;
+  font-size: 16px;
+  line-height: 1.72;
+}
+
+.faq-cta {
+  margin-top: 96px;
+  padding-top: 52px;
+  border-top: 1px solid var(--line);
+}
+
+.faq-cta h2 {
+  margin-top: 6px;
+  font-size: clamp(28px, 3.4vw, 40px);
+}
+
+.faq-cta > p {
+  margin-top: 22px;
+  max-width: 56ch;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.66;
+}
+
+.faq-cta .primary-cta {
+  margin-top: 32px;
+}
+
+.faq-cta-alt {
+  margin-top: 24px;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.faq-cta-alt a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.faq-cta-alt a:hover {
+  text-decoration-thickness: 2px;
+}
+
+@media (max-width: 640px) {
+  .faq-group {
+    margin-top: 56px;
+  }
+
+  .faq-item summary {
+    gap: 18px;
+  }
+
+  .faq-a {
+    padding-right: 8px;
+  }
+}
+
+/* --- Reduced motion ------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *:before,
+  *:after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
