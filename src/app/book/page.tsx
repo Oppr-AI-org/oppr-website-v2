@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Wordmark, ProductTimeline } from "@/components/home/primitives";
+import { Wordmark } from "@/components/home/primitives";
 import { BookForm } from "@/components/book/BookForm";
 
 export const metadata: Metadata = {
   title: "Book an operational review — Oppr",
   description:
-    "Book a 30-minute operational review. Bring one blind spot; you leave with it scoped, whether or not we work together.",
+    "Book a 30-minute introductory call. Bring one blind spot; together we see whether it's a fit for the 10-Week Proof, whether or not we work together.",
 };
 
 export default function BookPage() {
@@ -23,21 +23,19 @@ export default function BookPage() {
 
       <section className="book-shell">
         <div className="book-intro">
-          <p className="section-no">THE NEXT CONVERSATION</p>
           <h1>Book a 30-minute operational review.</h1>
           <p className="book-lede">
             Bring one blind spot: a process you cannot fully explain, a recurring
-            loss, a dependence on one experienced operator. In 30 minutes we map
-            the data you have, the context you&rsquo;re missing, and whether it
-            fits the 10-Week Proof.
+            loss, a dependence on one experienced operator. In 30 minutes we look
+            at the data you have, the context you&rsquo;re missing, and whether
+            it&rsquo;s a fit for the 10-Week Proof. It&rsquo;s an introductory
+            conversation to see if you&rsquo;re a good candidate, not a
+            commitment.
           </p>
           <div className="book-facts">
             <span>No new hardware</span>
             <span>No preparation needed</span>
-            <span>You leave with a scoped blind spot</span>
-          </div>
-          <div className="book-timeline">
-            <ProductTimeline />
+            <span>You leave with an identified blind spot</span>
           </div>
         </div>
 

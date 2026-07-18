@@ -423,6 +423,41 @@ a {
   font-weight: 400;
 }
 
+/* Loop eyebrow — Capture → Connect → Execute shown together, the current move
+   lit in accent and the other two held back. Larger than the mono section-no it
+   replaces, so the reader always sees where the section sits in the loop. */
+.step-eyebrow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 26px;
+  font-family: var(--mono), monospace;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.step-eyebrow > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.step-eyebrow .on {
+  color: var(--accent);
+}
+
+.step-eyebrow .off {
+  color: color-mix(in srgb, var(--ink) 20%, transparent);
+}
+
+.step-eyebrow .step-sep {
+  font-weight: 400;
+  color: color-mix(in srgb, var(--ink) 16%, transparent);
+}
+
 .section-copy {
   padding-top: 42px;
 }
@@ -670,7 +705,7 @@ a {
 
 .proof-columns li span {
   color: var(--accent);
-  font: 600 9px var(--mono), monospace;
+  font: 700 14px var(--mono), monospace;
 }
 
 /* --- Review --------------------------------------------------------------- */
@@ -719,6 +754,11 @@ footer > div p {
   margin-top: 14px;
   color: var(--muted);
   font-size: 13px;
+}
+
+.footer-tagline {
+  color: var(--accent);
+  font-weight: 600;
 }
 
 footer > div > span {
@@ -1354,11 +1394,11 @@ footer nav {
 }
 
 .footer-label {
-  margin: 0 0 4px;
-  color: var(--muted);
+  margin: 0 0 6px;
+  color: var(--accent);
   font-family: var(--mono), monospace;
-  font-size: 10px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -1733,24 +1773,21 @@ footer nav {
   background: color-mix(in srgb, var(--surface) 75%, transparent);
 }
 
-.value-no {
-  font-family: var(--mono), monospace;
-  font-size: 28px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: color-mix(in srgb, var(--ink) 22%, transparent);
-  transition: color 0.2s ease;
-}
-
-.value:hover .value-no {
-  color: var(--accent);
-}
-
+/* a small terracotta marker leads each principle — the house accent rule,
+   not a big numbered "rule" */
 .value strong {
   display: block;
-  margin-top: 14px;
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.value strong::before {
+  content: "";
+  display: block;
+  width: 22px;
+  margin-bottom: 16px;
+  border-top: 2px solid var(--accent);
 }
 
 .value p {
@@ -2230,11 +2267,21 @@ footer nav {
   white-space: pre-line; /* honour the \n in the Connect caption (two rows) */
 }
 
+/* The two bottom captions differ in length (Capture wraps to two lines, Execute
+   is one). Because both items are bottom-anchored, an uneven caption would push
+   one screen higher than the other — so hold both captions to two lines' height,
+   which lands the two screens on the same baseline. */
+.pc-capture p,
+.pc-execute p {
+  min-height: 2.9em;
+}
+
 /* connect at the top (wider, landscape), capture bottom-left, execute bottom-right.
    Positioned with calc, not transform — the scroll-reveal animates transform and
    must not fight the layout. */
 .pc-connect {
-  top: 0;
+  /* lifted clear of the ring's top arc so the orbiting arrow reads at the top */
+  top: -52px;
   left: calc(50% - 116px);
   width: 232px;
 }

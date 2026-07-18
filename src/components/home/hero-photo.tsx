@@ -44,6 +44,9 @@ type Feed = {
   label: string;
   node: "square" | "round";
   mic?: boolean;
+  /* the human feed carries a real spoken note; two short lines set smaller so
+     it reads as a captured observation, not a machine value. */
+  lines?: [string, string];
 };
 
 /* ┌── ORANGE DOT (phone origin) — HAND-TUNE ────────────────────────────────┐
@@ -62,7 +65,17 @@ const feeds: Feed[] = [
   { id: "flow", voice: "machine", ox: 640, oy: 402, lx: 510, label: "62 °C", node: "square" },
   { id: "vessel", voice: "machine", ox: 812, oy: 236, lx: 720, label: "2.4 bar", node: "square" },
   { id: "rate", voice: "machine", ox: 852, oy: 548, lx: 930, label: "1.2 m³/h", node: "square" },
-  { id: "phone", voice: "human", ox: DOT_X, oy: DOT_Y, lx: 1050, label: "SPOKEN NOTE", node: "round", mic: true },
+  {
+    id: "phone",
+    voice: "human",
+    ox: DOT_X,
+    oy: DOT_Y,
+    lx: 1064,
+    label: "SPOKEN NOTE",
+    node: "round",
+    mic: true,
+    lines: ["High-pitched sound from the pump", "weeks now — likely the bearing"],
+  },
 ];
 
 const color = (v: Feed["voice"]) => (v === "human" ? HUMAN : MACHINE);
@@ -80,7 +93,15 @@ const ticks = [
   1268, 1336, 1404, 1472,
 ];
 
-const pillWidth = (f: Feed) => f.label.length * 7.4 + (f.mic ? 40 : 26);
+/* the spoken-note pill sets its two lines smaller than a machine value */
+const NOTE_FONT = 6.5;
+const pillWidth = (f: Feed) => {
+  if (f.lines) {
+    const maxChars = Math.max(...f.lines.map((l) => l.length));
+    return maxChars * (NOTE_FONT * 0.6) + 40; // mic zone + right padding
+  }
+  return f.label.length * 7.4 + (f.mic ? 40 : 26);
+};
 
 /* ┌─────────────────────────────────────────────────────────────────────────┐
  * │  PHONE UI PLACEMENT — HAND-TUNE THESE THREE NUMBERS                        │
@@ -300,16 +321,35 @@ export function HeroPhotoScene() {
               stroke={color(f.voice)}
               strokeWidth={warm ? 1.5 : 1.2}
             />
-            {f.mic && (
-              <g stroke={color(f.voice)} strokeWidth="1.3" fill="none" strokeLinecap="round" transform={`translate(${f.lx - w / 2 + 13}, ${PILL_TOP + 13})`}>
-                <rect x="-2.4" y="-6" width="4.8" height="8" rx="2.4" fill={color(f.voice)} stroke="none" />
-                <path d="M-4.6 -1 a 4.6 4.6 0 0 0 9.2 0" />
-                <line x1="0" y1="3.6" x2="0" y2="6" />
-              </g>
+            {f.lines ? (
+              <>
+                {/* mic sits vertically centred; the two note lines read to its right */}
+                <g stroke={color(f.voice)} strokeWidth="1.2" fill="none" strokeLinecap="round" transform={`translate(${f.lx - w / 2 + 13}, ${PILL_TOP + PILL_H / 2})`}>
+                  <rect x="-2.2" y="-5.5" width="4.4" height="7.5" rx="2.2" fill={color(f.voice)} stroke="none" />
+                  <path d="M-4.2 -1 a 4.2 4.2 0 0 0 8.4 0" />
+                  <line x1="0" y1="3.2" x2="0" y2="5.4" />
+                </g>
+                <text x={f.lx - w / 2 + 24} y={PILL_TOP + 11} fill={color(f.voice)} fontSize={NOTE_FONT} style={mono}>
+                  {f.lines[0]}
+                </text>
+                <text x={f.lx - w / 2 + 24} y={PILL_TOP + 20} fill={color(f.voice)} fontSize={NOTE_FONT} style={mono}>
+                  {f.lines[1]}
+                </text>
+              </>
+            ) : (
+              <>
+                {f.mic && (
+                  <g stroke={color(f.voice)} strokeWidth="1.3" fill="none" strokeLinecap="round" transform={`translate(${f.lx - w / 2 + 13}, ${PILL_TOP + 13})`}>
+                    <rect x="-2.4" y="-6" width="4.8" height="8" rx="2.4" fill={color(f.voice)} stroke="none" />
+                    <path d="M-4.6 -1 a 4.6 4.6 0 0 0 9.2 0" />
+                    <line x1="0" y1="3.6" x2="0" y2="6" />
+                  </g>
+                )}
+                <text x={f.lx + (f.mic ? 8 : 0)} y={PILL_TOP + 17} textAnchor="middle" fill={color(f.voice)} fontSize="12.5" style={mono}>
+                  {f.label}
+                </text>
+              </>
             )}
-            <text x={f.lx + (f.mic ? 8 : 0)} y={PILL_TOP + 17} textAnchor="middle" fill={color(f.voice)} fontSize="12.5" style={mono}>
-              {f.label}
-            </text>
           </g>
         );
       })}

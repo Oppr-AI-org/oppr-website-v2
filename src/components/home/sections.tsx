@@ -40,6 +40,24 @@ const proofProvides = [
   "A verified improvement, with the action that delivered it",
 ];
 
+// The three moves of the loop. Each of the Capture / Connect / Execute sections
+// shows all three as its eyebrow, with the current move lit and the other two
+// held back — so the reader always sees where this section sits in the loop.
+const LOOP_STEPS = ["Capture", "Connect", "Execute"] as const;
+
+function StepEyebrow({ active }: { active: (typeof LOOP_STEPS)[number] }) {
+  return (
+    <p className="step-eyebrow" aria-label={active}>
+      {LOOP_STEPS.map((step, i) => (
+        <span key={step}>
+          {i > 0 && <span className="step-sep" aria-hidden="true">→</span>}
+          <span className={step === active ? "on" : "off"}>{step}</span>
+        </span>
+      ))}
+    </p>
+  );
+}
+
 export function Hero() {
   return (
     <section className="hero hero-photo" id="top">
@@ -53,19 +71,18 @@ export function Hero() {
       </div>
       <div className="hero-inner">
         <div className="hero-copy">
-          <p className="eyebrow">Continuous improvement for manufacturing</p>
-          <h1>Your next improvement starts with your operators.</h1>
+          <p className="eyebrow">Operator intelligence for manufacturing</p>
+          <h1>Your next improvement is already walking the floor.</h1>
           <p className="hero-lede">
-            Every day, your operators see what is working, what is changing and
-            what could run better, long before it reaches a report.
+            Your operators notice{" "}
+            <em className="k-h k-quiet">the sound, the drift, the workaround</em>,
+            long before it reaches a report. <strong>Oppr is the app</strong>{" "}
+            that captures it in seconds, on the phone already in their hand.
           </p>
           <p className="hero-lede">
-            Oppr is an <strong>Operational Intelligence Platform</strong> that
-            captures what operators{" "}
-            <em className="k-h k-quiet">observe, change and learn</em>,
-            connects it with your existing{" "}
-            <em className="k-m k-quiet">machine data</em>, and turns it
-            into <span className="k-hero-plain">repeatable action</span>.
+            It lands next to your <em className="k-m k-quiet">machine data</em> on
+            one timeline, so recurring problems get explained and{" "}
+            <span className="k-hero-plain">the fix becomes repeatable</span>.
           </p>
           <Link className="primary-cta" href="/book">
             Book a call <span>↗</span>
@@ -73,6 +90,7 @@ export function Hero() {
           <div className="fact-strip lg">
             <span>No new hardware</span>
             <span>Live in 14 days</span>
+            <span>Operators onboard in minutes</span>
           </div>
         </div>
       </div>
@@ -85,7 +103,6 @@ export function Opportunity() {
     <section className="opportunity section">
       <div className="section-grid">
         <div className="section-heading">
-          <p className="section-no">THE OPPORTUNITY</p>
           <h2>Every operation observes, adjusts and learns.</h2>
         </div>
         <div className="section-copy">
@@ -115,7 +132,7 @@ export function Capture() {
     <section className="capture section" id="how">
       <div className="section-grid flipped">
         <div className="section-heading">
-          <p className="section-no">CAPTURE</p>
+          <StepEyebrow active="Capture" />
           <h2>Capture the context your machine data cannot record.</h2>
           <p className="section-sub">
             When and where it happens, in as little as 20 seconds.
@@ -190,7 +207,7 @@ export function Connect() {
     <section className="connect section">
       <div className="section-grid">
         <div className="section-heading">
-          <p className="section-no">CONNECT</p>
+          <StepEyebrow active="Connect" />
           <h2>See the complete operational story on one timeline.</h2>
           <p className="section-sub sub-ink">
             Machines show <strong>what</strong> happened.
@@ -243,7 +260,7 @@ export function Execute() {
     <section className="execute section">
       <div className="section-grid">
         <div className="section-heading">
-          <p className="section-no">EXECUTE</p>
+          <StepEyebrow active="Execute" />
           <h2>Turn what works into the way you work.</h2>
         </div>
         <div className="section-copy">
@@ -337,7 +354,7 @@ export function FloorProof() {
         </div>
       </div>
       <blockquote className="pull-quote">
-        <p>The material feels different at the die.</p>
+        <p>The material looks different at the die.</p>
         <cite>Line operator, extrusion · European plastics plant</cite>
       </blockquote>
       <div className="stat-strip" aria-label="Illustrative outcomes the loop targets">
@@ -407,7 +424,7 @@ export function Review() {
   return (
     <section className="review section" id="review">
       <div>
-        <p className="section-no">THE NEXT CONVERSATION</p>
+        <p className="section-no">Get in touch</p>
         <h2>Is the same issue coming back, and no one can say why?</h2>
       </div>
       <div>

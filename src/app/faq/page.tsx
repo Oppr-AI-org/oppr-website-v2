@@ -37,6 +37,14 @@ const groups: Group[] = [
         a: "No. You can start with no new hardware and no machine integration. Operators use the phone or tablet already in their hand. Oppr is built to fill the gap where sensors are not present; in effect, your operators are the sensors. When it is useful, you can connect existing machine data later to enrich the picture.",
       },
       {
+        q: "Do we need SCADA or existing digital systems to use Oppr?",
+        a: "No. Oppr meets you at whatever level of digitalisation you already have. Fully instrumented with SCADA and historians, a handful of machines online, or nothing digital at all, it works the same way: your operators capture context on the phone or tablet already in their hand. Where systems are already in place, Oppr adds the human layer of context around them. Where they are not, it is often the first step into digitalisation, creating a human data layer on the floor before a single sensor is installed.",
+      },
+      {
+        q: "Is this a whole new system and methodology to learn?",
+        a: "No. Oppr is built on the established thinking your teams already use, lean and Six Sigma, rather than a new methodology to adopt. We are not reinventing the wheel; we are bringing that proven approach into the age of AI, so the analysis that used to take days of manual digging happens continuously, in the flow of work on the floor.",
+      },
+      {
         q: "How quickly can we be up and running?",
         a: "Capturing context starts within days. There is no lengthy IT project, and operators are onboarded in minutes rather than a training programme. From there, most engagements run as a 10-Week Proof: one line, one blind spot, live on the floor in 14 days, and a verified improvement by the end. The system gets more useful the longer it runs.",
       },
@@ -183,11 +191,11 @@ export default function FaqPage() {
 
         <section className="faq-cta">
           <p className="section-no">Still have questions?</p>
-          <h2>Bring the one you cannot answer yet.</h2>
+          <h2>Ask us directly.</h2>
           <p>
-            A recurring loss you keep resetting, a line that behaves differently
-            between shifts, a result you cannot fully explain. In 30 minutes we
-            scope it with you, whether or not we end up working together.
+            If your question isn&rsquo;t answered here, get in touch. Book a short
+            call or send a message, whichever suits you, and we&rsquo;ll help you
+            work out whether Oppr fits your operation.
           </p>
           <Link className="primary-cta" href="/book">
             Book a call <span>↗</span>

@@ -254,16 +254,15 @@ export default function AboutPage() {
         </div>
 
         <div className="about-beliefs">
-          <h3>The rules we hold ourselves to.</h3>
-          <ol className="about-values">
+          <h3>The principles we build by.</h3>
+          <ul className="about-values">
             {values.map((value) => (
               <li key={value.no} className="value">
-                <span className="value-no">{value.no}</span>
                 <strong>{value.name}</strong>
                 <p>{value.text}</p>
               </li>
             ))}
-          </ol>
+          </ul>
         </div>
       </section>
 
@@ -292,7 +291,7 @@ export default function AboutPage() {
 
       <section className="review section">
         <div>
-          <p className="section-no">The next conversation</p>
+          <p className="section-no">Get in touch</p>
           <h2>See what your own floor already knows.</h2>
         </div>
         <div>

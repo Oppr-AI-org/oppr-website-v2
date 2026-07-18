@@ -74,14 +74,13 @@ export function BookForm() {
       </div>
 
       <div className="book-field">
-        <label htmlFor="company">
-          Company <span className="book-optional">optional</span>
-        </label>
+        <label htmlFor="company">Company</label>
         <input
           id="company"
           name="company"
           type="text"
           autoComplete="organization"
+          required
         />
       </div>
 
@@ -128,8 +127,8 @@ export function BookForm() {
       </button>
 
       <p className="book-reassure">
-        A 30-minute call. You leave with one blind spot scoped, whether or not
-        we work together.
+        A 30-minute introductory call to see if there&rsquo;s a fit. You leave
+        with the blind spot identified, whether or not we work together.
       </p>
     </form>
   );

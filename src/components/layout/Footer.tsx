@@ -69,7 +69,9 @@ export function Footer() {
     <footer>
       <div className="footer-brand">
         <Wordmark />
-        <p>Operational intelligence software for manufacturing.</p>
+        <p className="footer-tagline">
+          Operational Intelligence Software for Manufacturing.
+        </p>
         <span>Oppr B.V. · Oude Middenweg 17, 2491 AC Den Haag, NL</span>
         <div className="footer-social">
           <a
