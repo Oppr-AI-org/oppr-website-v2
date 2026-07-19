@@ -42,6 +42,7 @@ yarn-error.log*
 /text_files
 /screenshots
 /scripts
+/assets
 
 # Remotion sub-project build artifacts (source in video/src is kept)
 /video/node_modules

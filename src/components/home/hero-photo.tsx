@@ -103,20 +103,6 @@ const pillWidth = (f: Feed) => {
   return f.label.length * 7.4 + (f.mic ? 40 : 26);
 };
 
-/* ┌─────────────────────────────────────────────────────────────────────────┐
- * │  PHONE UI PLACEMENT — HAND-TUNE THESE THREE NUMBERS                        │
- * │  The VOICE + PHOTO buttons are one group drawn centred on (0,0), so:       │
- * │    PHONE_UI_X       move the buttons LEFT (smaller) / RIGHT (larger)       │
- * │    PHONE_UI_Y       move the buttons UP (smaller)  / DOWN (larger)         │
- * │    PHONE_UI_ROTATE  tilt in degrees, clockwise positive — match the phone  │
- * │  Rotation pivots about the CENTRE of the stack, so changing the angle does │
- * │  NOT move the buttons: tune position and angle independently.             │
- * │  Units are viewBox units (the whole scene is 1584 × 672). Edit, save, look.│
- * └─────────────────────────────────────────────────────────────────────────┘ */
-const PHONE_UI_X = 1044; // ← left / right
-const PHONE_UI_Y = 315; // ← up / down
-const PHONE_UI_ROTATE = -9; // ← angle (deg, clockwise +)
-
 /* ┌── SPEECH BUBBLE (spoken note) — HAND-TUNE ──────────────────────────────┐
  * │  The audio wave lives in a speech bubble whose tail points at the mouth. │
  * │    SPEECH_X / SPEECH_Y   bubble centre (move LEFT = smaller X)           │
@@ -411,31 +397,9 @@ export function HeroPhotoScene() {
         </g>
       </g>
 
-      {/* Oppr phone UI — two stacked capture buttons (icon over text), drawn
-          centred on (0,0) so PHONE_UI_ROTATE pivots about the stack centre.
-          Tune PHONE_UI_X / _Y / _ROTATE above. */}
-      <g transform={`translate(${PHONE_UI_X} ${PHONE_UI_Y}) rotate(${PHONE_UI_ROTATE})`} filter="url(#heroGlow)">
-        {/* VOICE (human / terracotta) — top button, spans y −38…−4 */}
-        <rect x="-16" y="-38" width="32" height="34" rx="7" fill="#100f0b" fillOpacity="0.52" stroke={HUMAN} strokeWidth="1.4" />
-        <g stroke={HUMAN} fill="none" strokeLinecap="round">
-          <rect x="-2.6" y="-32.5" width="5.2" height="9.5" rx="2.6" fill={HUMAN} stroke="none" />
-          <path d="M-5 -27 a 5 5.2 0 0 0 10 0" strokeWidth="1.6" />
-          <line x1="0" y1="-21.6" x2="0" y2="-19.4" strokeWidth="1.7" />
-        </g>
-        <text x="0" y="-8.5" textAnchor="middle" fill={HUMAN} fontSize="7" fontWeight="700" style={mono}>
-          VOICE
-        </text>
-        {/* PHOTO — bottom button, spans y 4…38 */}
-        <rect x="-16" y="4" width="32" height="34" rx="7" fill="#100f0b" fillOpacity="0.52" stroke={PAGE} strokeWidth="1.2" opacity="0.92" />
-        <g stroke={PAGE} fill="none" opacity="0.92">
-          <rect x="-9" y="12" width="18" height="12.5" rx="2" strokeWidth="1.4" />
-          <path d="M-4.5 12 l2 -2.8 h4.8 l2 2.8" strokeWidth="1.4" strokeLinejoin="round" />
-          <circle cx="0" cy="18.4" r="3.6" strokeWidth="1.4" />
-        </g>
-        <text x="0" y="34" textAnchor="middle" fill={PAGE} fontSize="7" fontWeight="700" opacity="0.92" style={mono}>
-          PHOTO
-        </text>
-      </g>
+      {/* The VOICE + PHOTO capture buttons now live in the photo plate itself
+          (baked in via the Gemini edit), so the phone screen reads as a real
+          app in correct perspective — no coded button overlay here. */}
     </svg>
   );
 }
