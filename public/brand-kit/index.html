@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>Oppr brand kit</title>
+  <link rel="icon" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ground: #f2f2ed; --ink: #15201e; --human: #a65032;
+      --machine: #3e6874; --verified: #55745e;
+      --line: rgba(21,32,30,0.12); --muted: rgba(21,32,30,0.55);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--ground); color: var(--ink);
+      font-family: "Archivo", system-ui, sans-serif; -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 56px 32px 96px; }
+    .kicker {
+      font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--human); margin: 0 0 12px;
+    }
+    h1 { font-weight: 700; font-size: 38px; letter-spacing: -0.03em; margin: 0 0 10px; }
+    .lede { font-size: 16px; line-height: 1.6; color: var(--muted); max-width: 620px; margin: 0 0 12px; }
+    h2 {
+      font-family: "JetBrains Mono", monospace; font-size: 12px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--muted); font-weight: 500;
+      margin: 56px 0 18px; padding-top: 20px; border-top: 1px solid var(--line);
+    }
+    .row { display: flex; flex-wrap: wrap; gap: 18px; }
+    .card {
+      border-radius: 12px; border: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: center;
+      padding: 34px; min-height: 120px; flex: 1 1 300px;
+    }
+    .card.dark { background: var(--ink); border-color: transparent; }
+    .icons { display: flex; align-items: flex-end; gap: 22px; }
+    .icons figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    .icons figcaption { font-family: "JetBrains Mono", monospace; font-size: 10px; color: var(--muted); }
+    .card.dark .icons figcaption { color: rgba(242,242,237,0.55); }
+    .dl { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .dl a {
+      font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.04em;
+      text-decoration: none; color: var(--ink); border: 1px solid var(--line);
+      border-radius: 999px; padding: 7px 13px; transition: all .15s;
+    }
+    .dl a:hover { border-color: var(--human); color: var(--human); }
+    .swatches { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+    .swatch { display: flex; align-items: center; gap: 12px; border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+    .chip { width: 34px; height: 34px; border-radius: 7px; border: 1px solid var(--line); flex: none; }
+    .swatch b { display: block; font-family: "JetBrains Mono", monospace; font-size: 12px; }
+    .swatch span { font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--muted); }
+    .type-note { font-size: 15px; line-height: 1.7; color: var(--ink); max-width: 640px; }
+    .type-note b { color: var(--human); }
+    footer { margin-top: 60px; font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kicker">Oppr brand kit</p>
+    <h1>oppr. and the o-monogram</h1>
+    <p class="lede">The wordmark stays the baseline <strong>oppr.</strong> with its terracotta period. The icon is the first letter <strong>o</strong> carrying that same terracotta dot. One accent, everywhere.</p>
+
+    <h2>Wordmark</h2>
+    <div class="row">
+      <div class="card">
+        <svg viewBox="0 0 200 52" width="220" role="img" aria-label="oppr">
+          <text x="6" y="40" font-family="Archivo, sans-serif" font-weight="700" font-size="40" letter-spacing="-1.5" fill="#15201e">oppr</text>
+          <circle cx="98" cy="35.5" r="4" fill="#a65032"/>
+        </svg>
+      </div>
+      <div class="card dark">
+        <svg viewBox="0 0 200 52" width="220" role="img" aria-label="oppr">
+          <text x="6" y="40" font-family="Archivo, sans-serif" font-weight="700" font-size="40" letter-spacing="-1.5" fill="#f2f2ed">oppr</text>
+          <circle cx="98" cy="35.5" r="4" fill="#a65032"/>
+        </svg>
+      </div>
+    </div>
+    <div class="dl">
+      <a href="assets/wordmark-light.svg" download>wordmark-light.svg</a>
+      <a href="assets/wordmark-dark.svg" download>wordmark-dark.svg</a>
+    </div>
+
+    <h2>Icon / favicon</h2>
+    <div class="row">
+      <div class="card">
+        <div class="icons">
+          <figure><img src="assets/icon-tile.svg" width="96" height="96" alt="" /><figcaption>96</figcaption></figure>
+          <figure><img src="assets/icon-tile.svg" width="48" height="48" alt="" /><figcaption>48</figcaption></figure>
+          <figure><img src="assets/icon-tile.svg" width="32" height="32" alt="" /><figcaption>32</figcaption></figure>
+          <figure><img src="assets/icon-tile.svg" width="16" height="16" alt="" /><figcaption>16</figcaption></figure>
+        </div>
+      </div>
+    </div>
+    <div class="dl">
+      <a href="assets/icon-tile.svg" download>icon-tile.svg</a>
+      <a href="assets/favicon.svg" download>favicon.svg</a>
+    </div>
+
+    <h2>Bare o. (no tile)</h2>
+    <div class="row">
+      <div class="card">
+        <div class="icons">
+          <figure><img src="assets/icon-bare-light.svg" width="72" height="72" alt="" /><figcaption>light bg</figcaption></figure>
+        </div>
+      </div>
+      <div class="card dark">
+        <div class="icons">
+          <figure><img src="assets/icon-bare-dark.svg" width="72" height="72" alt="" /><figcaption>dark bg</figcaption></figure>
+        </div>
+      </div>
+    </div>
+    <div class="dl">
+      <a href="assets/icon-bare-light.svg" download>icon-bare-light.svg</a>
+      <a href="assets/icon-bare-dark.svg" download>icon-bare-dark.svg</a>
+    </div>
+
+    <h2>Colours</h2>
+    <div class="swatches">
+      <div class="swatch"><span class="chip" style="background:#f2f2ed"></span><div><b>GROUND</b><span>#f2f2ed</span></div></div>
+      <div class="swatch"><span class="chip" style="background:#15201e"></span><div><b>INK</b><span>#15201e</span></div></div>
+      <div class="swatch"><span class="chip" style="background:#a65032"></span><div><b>HUMAN</b><span>#a65032</span></div></div>
+      <div class="swatch"><span class="chip" style="background:#3e6874"></span><div><b>MACHINE</b><span>#3e6874</span></div></div>
+      <div class="swatch"><span class="chip" style="background:#55745e"></span><div><b>VERIFIED</b><span>#55745e</span></div></div>
+    </div>
+
+    <h2>Type</h2>
+    <p class="type-note"><b>Archivo</b> 700, lowercase, letter-spacing -0.04em for the wordmark. <b>JetBrains Mono</b> for UI labels and navigation. Keep the wordmark lowercase and the terracotta period intact; one accent per mark.</p>
+
+    <footer>Oppr B.V. · internal brand kit · not for external distribution without approval</footer>
+  </div>
+</body>
+</html>

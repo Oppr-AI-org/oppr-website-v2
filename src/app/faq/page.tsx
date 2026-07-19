@@ -22,7 +22,7 @@ const groups: Group[] = [
     items: [
       {
         q: "What is Oppr?",
-        a: "Oppr is an Operational Intelligence Platform for manufacturing. Your machines record what happened; your operators see what changed, decide what to do, and learn from it. Oppr captures that human context in the field, places it beside your existing machine data on one timeline, and turns what works into repeatable, verified action. Three moves, capture, connect and execute, running together on the floor.",
+        a: "Oppr is an Operational Intelligence Platform for manufacturing. Your machines record what happened; your operators see what changed, decide what to do, and learn from it. Oppr captures that human context in the field, places it beside your existing machine data on one timeline, and turns what works into repeatable, verified action. We call that Operator Intelligence. Three moves, capture, connect and execute, running together on the floor.",
       },
       {
         q: "Who is Oppr for?",
@@ -46,11 +46,11 @@ const groups: Group[] = [
       },
       {
         q: "How quickly can we be up and running?",
-        a: "Capturing context starts within days. There is no lengthy IT project, and operators are onboarded in minutes rather than a training programme. From there, most engagements run as a 10-Week Proof: one line, one blind spot, live on the floor in 14 days, and a verified improvement by the end. The system gets more useful the longer it runs.",
+        a: "Capturing context starts within days. There is no lengthy IT project, and operators are on board in days rather than a training programme. From there, most engagements run as a 10-Week Proof, our proof of value: one line, one blind spot, starting from an analysis of your historic data, with a verified improvement by the end. Implementation follows, so first value typically lands within ninety days of kickoff. The system gets more useful the longer it runs.",
       },
       {
         q: "What does it cost?",
-        a: "Oppr is a SaaS subscription, scaled to the size and scope of your operation rather than sold per seat. It works as one connected system, so it is priced as one. Most operations start with the 10-Week Proof: a fixed scope and a fixed fee on a single line, so you see a result before committing more widely. We will talk through what it looks like in your environment on the call.",
+        a: "Oppr is a SaaS subscription, scaled to the size and scope of your operation rather than sold per seat. It works as one connected system, so it is priced as one. Most operations start with the 10-Week Proof: a fixed scope and a fixed fee on a single line, starting from your historic data, so you see a verified result before committing more widely. We will talk through what it looks like in your environment on the call.",
       },
     ],
   },
@@ -60,7 +60,7 @@ const groups: Group[] = [
     items: [
       {
         q: "How do operators capture what they notice?",
-        a: "In the moment it happens, in as little as 20 seconds. They can speak an observation, take a picture (of a defect, an unusual condition, or an unconnected machine screen Oppr reads the values from), or complete a short field check. Every entry is timestamped and linked to the relevant machine or moment. No long forms, no desktop, no reconstructing the shift afterwards. It works on the phone or tablet they already carry.",
+        a: "In the moment it happens, in seconds. They can speak an observation, take a picture, or complete a short field check, on the phone or tablet they already carry. No long forms, no desktop, no reconstructing the shift afterwards. Everything lands in the right place on its own; that part is our job.",
       },
       {
         q: "Will operators actually use it?",
@@ -72,11 +72,11 @@ const groups: Group[] = [
       },
       {
         q: "How does Oppr use AI?",
-        a: "AI does the structuring, not the deciding. It turns a spoken note or a photo into structured, timestamped data points, reads values off a machine screen, and finds correlations between what operators recorded and what the machines were doing. You can ask a plain-language question, like “when did we last see this on Line 4?”, and get an answer drawn from both human observations and machine data. The judgement stays with your people; the AI removes the busywork around it.",
+        a: "AI does the structuring, not the deciding. Operators speak or take a photo, and Oppr turns it into something the whole operation can use, in the background, with nothing to configure. You can ask a plain-language question, like “when did we last see this on Line 4?”, and get an answer drawn from both human observations and machine data. The judgement stays with your people; the AI removes the busywork around it. How it does that is the part we would rather show you than describe: it is the heart of the product, and a 20-minute demo makes it obvious.",
       },
       {
         q: "How do you actually find the correlations?",
-        a: "It builds on established lean and Six Sigma thinking, with AI doing the heavy lifting. Oppr correlates the human observations with each other and with machine data, surfacing the relationships that would otherwise take days of digging to find. That sharply reduces the time to root-cause analysis and similar investigations. A useful way to picture it: a real-time Six Sigma black belt in your pocket, working through the data while your team stays on the floor.",
+        a: "It builds on established lean and Six Sigma thinking, with AI doing the heavy lifting: the digging that used to take an improvement team days happens continuously, in the background. A useful way to picture it: a real-time Six Sigma black belt in your pocket, working through the data while your team stays on the floor. The specifics of how it gets there are the part we keep to ourselves, and the part we are happiest to demonstrate live.",
       },
       {
         q: "How does it help with shift handovers?",
@@ -124,7 +124,7 @@ const groups: Group[] = [
     items: [
       {
         q: "Does Oppr integrate with our existing systems?",
-        a: "Yes, and it is optional. Oppr delivers value on human observations alone, so you do not need an integration to start. When you are ready, it connects to common historians (such as OSIsoft PI or Wonderware), MES and SCADA over standard protocols. It also works both ways: push Oppr data out to your ERP, BI or data lake for reporting, or pull machine data in to enrich the shared timeline.",
+        a: "Yes, and it is optional. Oppr delivers value on human observations alone, so you do not need an integration to start. When you are ready, it connects to the historians, MES and SCADA systems most plants already run, over standard protocols. It also works both ways: push Oppr data out to your ERP, BI or data lake for reporting, or pull machine data in to enrich the shared timeline.",
       },
       {
         q: "How do you handle data privacy, security and ownership?",

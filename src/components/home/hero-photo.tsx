@@ -64,7 +64,7 @@ const feeds: Feed[] = [
   { id: "pump", voice: "machine", ox: 486, oy: 500, lx: 300, label: "1450 RPM", node: "square" },
   { id: "flow", voice: "machine", ox: 640, oy: 402, lx: 510, label: "62 °C", node: "square" },
   { id: "vessel", voice: "machine", ox: 812, oy: 236, lx: 720, label: "2.4 bar", node: "square" },
-  { id: "rate", voice: "machine", ox: 852, oy: 548, lx: 930, label: "1.2 m³/h", node: "square" },
+  { id: "rate", voice: "machine", ox: 852, oy: 548, lx: 872, label: "22.6 m³/h", node: "square" },
   {
     id: "phone",
     voice: "human",
@@ -103,36 +103,21 @@ const pillWidth = (f: Feed) => {
   return f.label.length * 7.4 + (f.mic ? 40 : 26);
 };
 
-/* ┌── SPEECH BUBBLE (spoken note) — HAND-TUNE ──────────────────────────────┐
- * │  The audio wave lives in a speech bubble whose tail points at the mouth. │
- * │    SPEECH_X / SPEECH_Y   bubble centre (move LEFT = smaller X)           │
- * │    SPEECH_W / SPEECH_H   bubble size                                     │
- * │    MOUTH_X / MOUTH_Y     tail tip — put it on the operator's mouth       │
+/* ┌── SOUND EMANATION (from the phone) — HAND-TUNE ─────────────────────────┐
+ * │  Concentric dashed arcs ripple UP off the phone: the note is being       │
+ * │  captured in the moment. Centred on the phone's orange dot (DOT_X/Y).    │
+ * │    SOUND_ARCS   [halfWidth, height, lift] per arc, nearest phone first   │
  * └─────────────────────────────────────────────────────────────────────────┘ */
-const SPEECH_X = 1150;
-const SPEECH_Y = 248;
-const SPEECH_W = 100;
-const SPEECH_H = 78;
-const MOUTH_X = 1220;
-const MOUTH_Y = 286;
+const SOUND_ARCS: Array<[number, number, number]> = [
+  [15, 10, 9],
+  [24, 20, 13],
+  [33, 30, 17],
+];
+/* one upward-bulging arc, centred over the phone dot, `up` units above it */
+const soundArcPath = (hw: number, up: number, lift: number) =>
+  `M ${DOT_X - hw} ${DOT_Y - up} Q ${DOT_X} ${DOT_Y - up - lift} ${DOT_X + hw} ${DOT_Y - up}`;
 
-const waveBars = [-24, -16, -8, 0, 8, 16, 24];
-const waveHeights = [14, 26, 38, 48, 38, 26, 15];
-
-/* rounded-rect speech bubble with a tail on the right edge pointing at the mouth */
-const _sbx = SPEECH_X - SPEECH_W / 2;
-const _sby = SPEECH_Y - SPEECH_H / 2;
-const _sbr = 13;
-const _sbRight = SPEECH_X + SPEECH_W / 2;
-const SPEECH_PATH =
-  `M ${_sbx + _sbr} ${_sby}` +
-  ` H ${_sbRight - _sbr} A ${_sbr} ${_sbr} 0 0 1 ${_sbRight} ${_sby + _sbr}` +
-  ` V ${SPEECH_Y - 11} L ${MOUTH_X} ${MOUTH_Y} L ${_sbRight} ${SPEECH_Y + 11}` +
-  ` V ${_sby + SPEECH_H - _sbr} A ${_sbr} ${_sbr} 0 0 1 ${_sbRight - _sbr} ${_sby + SPEECH_H}` +
-  ` H ${_sbx + _sbr} A ${_sbr} ${_sbr} 0 0 1 ${_sbx} ${_sby + SPEECH_H - _sbr}` +
-  ` V ${_sby + _sbr} A ${_sbr} ${_sbr} 0 0 1 ${_sbx + _sbr} ${_sby} Z`;
-
-/* the human (phone) feed speaks FIRST (audio wave), THEN sends the pulse up */
+/* the human (phone) feed emanates sound FIRST, THEN sends the pulse up */
 const WAVE_LEAD = 1250;
 
 /* ------------------------------------------------------------------ *
@@ -145,9 +130,8 @@ const pct = (ms: number) => `${((ms / T) * 100).toFixed(2)}%`;
 function buildCss(): string {
   let css = `
 .hero-anim { opacity: 0; }
-.hero-wavebar { transform-box: fill-box; transform-origin: center; }
+.hero-sound-arc { transform-box: view-box; transform-origin: ${DOT_X}px ${DOT_Y}px; }
 @media (prefers-reduced-motion: no-preference) {
-  @keyframes hero-bar { 0%,100% { transform: scaleY(0.35); } 50% { transform: scaleY(1); } }
   @keyframes hero-wave {
     0%, ${pct(4 * SLOT + 60)} { opacity: 0; }
     ${pct(4 * SLOT + 240)} { opacity: 1; }
@@ -155,15 +139,15 @@ function buildCss(): string {
     ${pct(4 * SLOT + WAVE_LEAD + 250)} { opacity: 0; }
     100% { opacity: 0; }
   }
+  @keyframes hero-emanate {
+    0% { transform: scale(0.5); opacity: 0; }
+    35% { opacity: 0.95; }
+    100% { transform: scale(1.7); opacity: 0; }
+  }
   .hero-wave { animation: hero-wave ${T}ms linear infinite; }
-  .hero-wavebar { animation: hero-bar 640ms ease-in-out infinite; }
-  .hero-wavebar.b0 { animation-delay: 0ms; }
-  .hero-wavebar.b1 { animation-delay: 90ms; }
-  .hero-wavebar.b2 { animation-delay: 180ms; }
-  .hero-wavebar.b3 { animation-delay: 40ms; }
-  .hero-wavebar.b4 { animation-delay: 150ms; }
-  .hero-wavebar.b5 { animation-delay: 70ms; }
-  .hero-wavebar.b6 { animation-delay: 200ms; }
+  .hero-sound-arc { animation: hero-emanate 1400ms ease-out infinite; }
+  .hero-sound-arc.a1 { animation-delay: 300ms; }
+  .hero-sound-arc.a2 { animation-delay: 600ms; }
 `;
 
   feeds.forEach((f, i) => {
@@ -375,26 +359,20 @@ export function HeroPhotoScene() {
         );
       })}
 
-      {/* spoken-note speech bubble — audio wave inside, tail from the mouth */}
+      {/* spoken note captured: dashed sound arcs ripple up off the phone */}
       <g className="hero-anim hero-wave" filter="url(#heroGlowWarm)">
-        <path d={SPEECH_PATH} fill="#140f0b" fillOpacity="0.82" stroke={HUMAN} strokeWidth="1.6" strokeLinejoin="round" />
-        <g transform={`translate(${SPEECH_X} ${SPEECH_Y})`}>
-          {waveBars.map((bx, i) => {
-            const h = waveHeights[i];
-            return (
-              <rect
-                key={bx}
-                className={`hero-wavebar b${i}`}
-                x={bx - 2}
-                y={-h / 2}
-                width="4"
-                height={h}
-                rx="2"
-                fill={HUMAN}
-              />
-            );
-          })}
-        </g>
+        {SOUND_ARCS.map(([hw, up, lift], i) => (
+          <path
+            key={i}
+            className={`hero-sound-arc a${i}`}
+            d={soundArcPath(hw, up, lift)}
+            fill="none"
+            stroke={HUMAN}
+            strokeWidth="2.2"
+            strokeLinecap="round"
+            strokeDasharray="2 5"
+          />
+        ))}
       </g>
 
       {/* The VOICE + PHOTO capture buttons now live in the photo plate itself

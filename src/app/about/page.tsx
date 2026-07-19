@@ -230,6 +230,18 @@ export default function AboutPage() {
         </ol>
       </section>
 
+      <section className="section">
+        <blockquote className="pull-quote about-quote">
+          <p>
+            When I ran production, I slept with my phone next to the bed. A
+            certain crew on nights, rain in the forecast, and I knew a call was
+            coming. Every plant has its own version of that feeling. Oppr exists
+            so the reasons behind it stop living in one person&rsquo;s gut.
+          </p>
+          <cite>Floris Wyers · Founder &amp; CEO</cite>
+        </blockquote>
+      </section>
+
       <section className="section about-company">
         <div className="section-grid">
           <div className="section-heading">

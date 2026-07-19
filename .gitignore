@@ -44,6 +44,12 @@ yarn-error.log*
 /scripts
 /assets
 
+# internal strategy & planning docs (positioning / IP) — kept local only
+/analysis.md
+/IMPLEMENTATION.md
+/LOGO.md
+/video/SCRIPTS-V4.md
+
 # Remotion sub-project build artifacts (source in video/src is kept)
 /video/node_modules
 /video/out
