@@ -22,7 +22,7 @@ const release = {
   ],
   quotes: [
     {
-      text: "Operators are the experts on the floor. For too long their knowledge has had nowhere to live. We give it a place, and we give the plant a way to use it. This investment gives us the advantage we need to expand into European manufacturing.",
+      text: "We could not be happier to have FORWARD.one alongside us, with their knowledge, network and background. They are exactly the forward-looking investor this industry needs: they understand that transforming traditional manufacturing does not happen with a quick-fix software solution, and they have backed our long-term, continuous-improvement approach. Operators are the experts on the floor. For too long their knowledge has had nowhere to live. We give it a place, and we give the plant a way to use it.",
       cite: "Floris Wyers · Founder & CEO, Oppr",
     },
     {
