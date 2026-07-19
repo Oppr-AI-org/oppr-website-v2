@@ -2754,3 +2754,128 @@ footer nav {
     animation: none !important;
   }
 }
+
+/* --- Press page ----------------------------------------------------------- */
+
+.press-release {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 56px;
+  align-items: start;
+}
+.press-article { max-width: 720px; }
+.press-head { margin-bottom: 34px; }
+.press-date {
+  display: block;
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 6px 0 16px;
+}
+.press-head h2 {
+  font-size: clamp(1.8rem, 3.4vw, 2.7rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin: 0 0 16px;
+  text-wrap: balance;
+}
+.press-standfirst {
+  font-size: 1.18rem;
+  line-height: 1.55;
+  color: var(--muted);
+  margin: 0;
+}
+.press-article > p {
+  font-size: 1.02rem;
+  line-height: 1.72;
+  margin: 0 0 20px;
+}
+.press-about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin: 40px 0 24px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+.press-about h3 {
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--machine);
+  margin: 0 0 10px;
+}
+.press-about p { font-size: 0.95rem; line-height: 1.62; color: var(--muted); margin: 0; }
+.press-note { font-size: 0.9rem; color: var(--muted); font-style: italic; }
+.press-aside {
+  position: sticky;
+  top: 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 26px;
+  background: var(--surface);
+}
+.press-contact .section-no { margin-bottom: 10px; }
+.press-contact p { font-size: 0.95rem; line-height: 1.6; margin: 0; }
+.press-contact a { color: var(--accent); }
+
+@media (max-width: 900px) {
+  .press-release { grid-template-columns: 1fr; gap: 34px; }
+  .press-aside { position: static; order: -1; }
+  .press-about { grid-template-columns: 1fr; gap: 20px; }
+}
+
+/* --- Press page refinements ---------------------------------------------- */
+
+.press-aside .about-specs { grid-template-columns: 1fr; margin-top: 0; }
+.press-aside .about-specs > div { min-width: 0; }
+.press-aside .about-specs dd { font-size: 17px; overflow-wrap: anywhere; }
+
+/* All press quotes share one style: terracotta bar and terracotta quote marks
+   (inherited from .pull-quote), just smaller than the case-study pull-quote. */
+.press-article .press-quote {
+  font-size: 18px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+/* Clickable logo lockup below the quotes. */
+.press-logos {
+  display: flex;
+  align-items: center;
+  gap: 44px;
+  margin: 40px 0 4px;
+  padding-top: 30px;
+  border-top: 1px solid var(--line);
+}
+.press-logos a {
+  text-decoration: none;
+  color: var(--ink);
+  opacity: 0.72;
+  transition: opacity 0.15s ease;
+}
+.press-logos a:hover { opacity: 1; }
+.press-logo-oppr {
+  font-weight: 800;
+  font-size: 32px;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+.press-logo-oppr span { color: var(--accent); }
+.press-logo-forward {
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+.press-logo-forward span { font-weight: 500; color: var(--muted); }
+
+@media (max-width: 520px) {
+  .press-logos { gap: 28px; }
+}

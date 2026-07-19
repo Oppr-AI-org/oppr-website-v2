@@ -109,11 +109,12 @@ export function Footer() {
           <a href="/#platform">Platform</a>
           <a href="/#how">How it works</a>
           <a href="/#proof">10-Week Proof</a>
-          <Link href="/book">Operational review</Link>
+          <Link href="/book">Book a call</Link>
         </nav>
         <nav aria-label="Company">
           <p className="footer-label">Company</p>
           <Link href="/about">About</Link>
+          <Link href="/press">Press</Link>
           <Link href="/faq">FAQ</Link>
           <Link href="/contact">Contact</Link>
           <Link href="/privacy">Privacy</Link>
