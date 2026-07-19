@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { LoopVisual } from "@/components/home/primitives";
 import { HeroPhotoScene } from "@/components/home/hero-photo";
 import {
   PlatformCircle,
@@ -117,9 +116,8 @@ export function Opportunity() {
           </p>
         </div>
       </div>
-      <LoopVisual />
       <p className="closing-copy">
-        We call it Operator Intelligence: what your best people already know,
+        We call it Operator Intelligence: your best people&rsquo;s judgement,
         made usable by the whole operation.
       </p>
     </section>

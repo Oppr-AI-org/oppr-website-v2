@@ -59,30 +59,3 @@ export function ProductTimeline() {
   );
 }
 
-export function LoopVisual() {
-  return (
-    <div className="loop-visual" aria-label="Operational learning loop: observe, adjust, learn — then improve and repeat">
-      {/* the improve step is the return arc: Learn loops back over the top into
-          Observe, with the IMPROVE pill sitting on the line */}
-      <svg className="loop-arc" viewBox="0 0 1000 50" aria-hidden="true">
-        <path className="loop-arc-line" d="M905 46 C 905 8, 815 8, 500 8 C 185 8, 95 8, 95 46" />
-        <path className="loop-arc-head" d="M88 37 L95 46 L102 37" />
-      </svg>
-      <span className="loop-arc-pill">Improve</span>
-      <div className="loop-row">
-        <div>
-          <strong>Observe</strong>
-          <small>What changed?</small>
-        </div>
-        <div>
-          <strong>Adjust</strong>
-          <small>What was done, and why?</small>
-        </div>
-        <div>
-          <strong>Learn</strong>
-          <small>What happened next?</small>
-        </div>
-      </div>
-    </div>
-  );
-}
