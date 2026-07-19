@@ -180,7 +180,7 @@ a {
   color: var(--accent);
 }
 
-.site-header nav {
+.header-nav {
   display: flex;
   gap: 28px;
   font-family: var(--mono), monospace;
@@ -189,12 +189,51 @@ a {
   letter-spacing: -0.01em;
 }
 
-.site-header nav a {
+.header-nav a {
   transition: color 0.18s;
 }
 
-.site-header nav a:hover {
+.header-nav a:hover {
   color: var(--accent);
+}
+
+/* hamburger — hidden on desktop, shown once the inline nav folds */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 42px;
+  height: 42px;
+  padding: 0 9px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  border-radius: 2px;
+  background: var(--ink);
+  transition: transform 0.22s ease, opacity 0.18s ease;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* dropdown drawer — only present once the nav folds (see media query below) */
+.nav-drawer {
+  display: none;
 }
 
 /* --- Calls to action ------------------------------------------------------ */
@@ -220,11 +259,57 @@ a {
   min-height: 42px;
 }
 
-/* the mono nav is wider than the old sans nav; fold it to just the logo + CTA
+/* the mono nav is wider than the old sans nav; fold it into the hamburger
    before it can crowd the button */
 @media (max-width: 1140px) {
-  .site-header nav {
+  .header-nav {
     display: none;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-drawer {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 29;
+    overflow: hidden;
+    max-height: 0;
+    background: color-mix(in srgb, var(--bg) 97%, transparent);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: max-height 0.3s ease, border-color 0.3s ease;
+  }
+
+  .nav-drawer.open {
+    max-height: 340px;
+    border-bottom-color: var(--line);
+  }
+
+  .nav-drawer nav {
+    display: flex;
+    flex-direction: column;
+    width: min(calc(100% - 48px), var(--max));
+    margin: 0 auto;
+    padding: 6px 0 16px;
+    font-family: var(--mono), monospace;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .nav-drawer nav a {
+    padding: 15px 4px;
+    border-top: 1px solid var(--line);
+    transition: color 0.18s;
+  }
+
+  .nav-drawer nav a:hover {
+    color: var(--accent);
   }
 }
 
@@ -2135,6 +2220,24 @@ footer nav {
   color: rgba(244, 242, 236, 0.7);
 }
 
+/* Narrow widths crop the photo to its lighter centre band, which can wash the
+   white copy out. Lay a progressive dark veil over the photo (below the copy,
+   which keeps its own z-index) so the hero stays legible on tablet and phone. */
+@media (max-width: 900px) {
+  .hero-photo .hero-art::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      rgba(9, 8, 6, 0.22) 0%,
+      rgba(9, 8, 6, 0.5) 55%,
+      rgba(9, 8, 6, 0.72) 100%
+    );
+  }
+}
+
 .hero-inner {
   position: relative;
   z-index: 1;
@@ -2425,7 +2528,10 @@ footer nav {
 }
 
 @media (max-width: 760px) {
-  .hero-art {
+  /* Only the line-art hero's background art fades on mobile. The photo hero
+     shares the .hero-art class but must stay fully visible (its own scrims and
+     the mobile veil handle legibility). */
+  .hero:not(.hero-photo) .hero-art {
     opacity: 0.22;
     -webkit-mask-image: none;
     mask-image: none;
